@@ -3,6 +3,7 @@ from ctypes import *
 
 OpenSMOKE = cdll.LoadLibrary("libopensmoke.so")
 
+OpenSMOKE.OpenSMOKE_Init()
 OpenSMOKE.OpenSMOKE_ReadKinetics()
 OpenSMOKE.OpenSMOKE_ReadLiquidKinetics()
 OpenSMOKE.OpenSMOKE_ReadLiquidProperties()

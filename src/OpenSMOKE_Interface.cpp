@@ -1,13 +1,39 @@
 
 #include "OpenSMOKE_Interface.h"
+#include "OpenSMOKE_ODESystem_Interface.h"
+
+// OpenSMOKE++ Definitions
 #include "OpenSMOKEpp"
 #include "math/PhysicalConstants.h"
+
+// CHEMKIN maps
 #include "maps/Maps_CHEMKIN"
 #include "maps/ThermodynamicsMap_Liquid_CHEMKIN.h"
 #include "maps/KineticsMap_Liquid_CHEMKIN.h"
+
+// OpenSMOKE++ Thermodynamics and liquid phase properties
 #include "thermodynamics/mixture/mixtureL/mixtureL.h"
 #include "thermodynamics/mixture/mixtureG/mixtureG.h"
+
+// OpenSMOKE++ Dictionaries
 #include "dictionary/OpenSMOKE_Dictionary"
+
+// ODE solvers
+#include "math/native-ode-solvers/MultiValueSolver"
+#include "math/external-ode-solvers/ODE_Parameters.h"
+
+// Utilities
+#include "idealreactors/utilities/Utilities"
+#include "utilities/ropa/OnTheFlyROPA.h"
+#include "utilities/cema/OnTheFlyCEMA.h"
+#include "utilities/ontheflypostprocessing/OnTheFlyPostProcessing.h"
+#include "utilities/kineticsmodifier/KineticsModifier.h"
+
+// PolimiSoot Analyzer
+#include "utilities/soot/polimi/OpenSMOKE_PolimiSoot_Analyzer.h"
+
+// Batch reactor
+#include "idealreactors/batch/BatchReactor"
 
 OpenSMOKE::ThermodynamicsMap_CHEMKIN*           thermodynamicsMapXML;
 OpenSMOKE::KineticsMap_CHEMKIN*                 kineticsMapXML;
@@ -146,6 +172,65 @@ void OpenSMOKE_MassFractions_From_MoleFractions (double* y, double* MW, const do
 
 void OpenSMOKE_MoleFractions_From_MassFractions (double* x, double* MW, const double* y) {
   return thermodynamicsMapXML->MoleFractions_From_MassFractions(x,*MW,y);
+}
+
+void OpenSMOKE_ODESolver
+(
+  odefunction ode,
+  int neq,
+  double dt,
+  double * y
+)
+{
+  // Set time step and initial values
+  double t0 = 0., tf = t0 + dt;
+  Eigen::VectorXd y0_eigen(neq);
+  for (int i=0; i<y0_eigen.size(); i++)
+    y0_eigen[i] = y[i];
+
+  // Create ODE parameters class
+  OpenSMOKE::ODE_Parameters ode_parameters_;
+
+  // Create the solver
+  typedef OdeSMOKE::KernelDense<OpenSMOKE::ODESystem_Interface> denseOde;
+  typedef OdeSMOKE::MethodGear<denseOde> methodGear;
+  OdeSMOKE::MultiValueSolver<methodGear> ode_solver;
+
+  // Set the ODE system of equations function
+  ode_solver.SetSystemOfEquations(ode);
+
+  // Set initial conditions
+  ode_solver.SetInitialConditions(t0, y0_eigen);
+
+  // Set linear algebra options
+  ode_solver.SetLinearAlgebraSolver(ode_parameters_.linear_algebra());
+  ode_solver.SetFullPivoting(ode_parameters_.full_pivoting());
+
+  // Set relative and absolute tolerances
+  ode_solver.SetAbsoluteTolerances(ode_parameters_.absolute_tolerance());
+  ode_solver.SetRelativeTolerances(ode_parameters_.relative_tolerance());
+
+  // Set minimum and maximum values
+  //ode_solver.SetMinimumValues(0.);
+  //ode_solver.SetMaximumValues(1.);
+
+  // Solve the system
+  double tStart = OpenSMOKE::OpenSMOKEGetCpuTime();
+  OdeSMOKE::OdeStatus status = ode_solver.Solve(tf);
+  double tEnd = OpenSMOKE::OpenSMOKEGetCpuTime();
+
+  // Check the solution
+  if (status > 0)
+  {
+    Eigen::VectorXd yf_eigen(1);
+    ode_solver.Solution(yf_eigen);
+    for (int i=0; i<yf_eigen.size(); i++)
+      y[i] = yf_eigen[i];
+  }
+  else
+  {
+    std::cout<< "Solution not found." << std::endl;
+  }
 }
 
 #ifdef __cplusplus
