@@ -17,9 +17,9 @@ void richardson (const double * y, const double dt, double * dy, void * args) {
 
   double y1 = y[0], y2 = y[1], y3 = y[2];
 
-  dy[0] = -.04*y1 + 1.e4*y2*y3;
-  dy[1] = .04*y1 - 1.e4*y2*y3 - 3.e7*y2*y2;
-  dy[2] = 3.e7*y2*y2;
+  dy[0] = -k1*y1 + k2*y2*y3;
+  dy[1] =  k1*y1 - k2*y2*y3 - k3*y2*y2;
+  dy[2] =  k3*y2*y2;
 }
 
 int main (void) {
@@ -30,8 +30,8 @@ int main (void) {
 
   UserData data;
   data.k1 = 0.04;
-  data.k2 = 1e7;
-  data.k3 = 1e4;
+  data.k2 = 1e4;
+  data.k3 = 3e7;
 
   OpenSMOKE_ODESolver (&richardson, neq, dt, y0, &data);
 
