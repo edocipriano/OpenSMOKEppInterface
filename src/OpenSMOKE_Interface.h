@@ -6,7 +6,7 @@
 extern "C" {
 #endif
 
-typedef void(*odefunction)(const double * y, const double t, double * dy);
+typedef void(*odefunction)(const double * y, const double t, double * dy, void * args);
 
 void OpenSMOKE_Init (void);
 void OpenSMOKE_ReadKinetics (void);
@@ -29,7 +29,7 @@ double OpenSMOKE_MolecularWeight_From_MoleFractions (const double* x);
 double OpenSMOKE_MolecularWeight_From_MassFractions (const double* x);
 void OpenSMOKE_MassFractions_From_MoleFractions (double* y, double* MW, const double* x);
 void OpenSMOKE_MoleFractions_From_MassFractions (double* x, double* MW, const double* y);
-void OpenSMOKE_ODESolver (odefunction ode, int neq, double dt, double * y);
+void OpenSMOKE_ODESolver (odefunction ode, int neq, double dt, double * y, void * args);
 
 #ifdef __cplusplus
 }

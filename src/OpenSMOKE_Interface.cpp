@@ -179,7 +179,8 @@ void OpenSMOKE_ODESolver
   odefunction ode,
   int neq,
   double dt,
-  double * y
+  double * y,
+  void * args
 )
 {
   // Set time step and initial values
@@ -197,6 +198,7 @@ void OpenSMOKE_ODESolver
   OdeSMOKE::MultiValueSolver<methodGear> ode_solver;
 
   // Set the ODE system of equations function
+  ode_solver.SetUserArgs(args);
   ode_solver.SetSystemOfEquations(ode);
 
   // Set initial conditions

@@ -49,7 +49,7 @@ namespace OpenSMOKE
   {
   public:
 
-    ODESystem_Interface() {}
+    ODESystem_Interface() {args_ = NULL;}
 
     void SetSystemOfEquations(odefunction odefun)
     {
@@ -59,6 +59,11 @@ namespace OpenSMOKE
     void SetNumberOfEquations(unsigned int ne)
     {
       ne_ = ne;
+    }
+
+    void SetUserArgs(void * args)
+    {
+      args_ = args;
     }
 
   protected:
@@ -71,7 +76,7 @@ namespace OpenSMOKE
 
     virtual void Equations(const Eigen::VectorXd &Y, const double t, Eigen::VectorXd &DY)
     {
-      odefun_ (Y.data(), t, DY.data());
+      odefun_ (Y.data(), t, DY.data(), args_);
     }
 
     void Jacobian(const Eigen::VectorXd &Y, const double t, Eigen::MatrixXd &J)
@@ -88,6 +93,7 @@ namespace OpenSMOKE
 
   private:
 
+    void * args_;
     odefunction odefun_;
   };
 }
