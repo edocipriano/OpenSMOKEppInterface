@@ -41,7 +41,7 @@ set (OPENSMOKE_INCLUDE_DIR $ENV{OPENSMOKE_LIBRARY_PATH})
 message (STATUS "OpenSmoke++           = ${OPENSMOKE_INCLUDE_DIR}")
 
 # --- libconfig++
-find_package (CONFIG++ REQUIRED COMPONENTS libconfig++)
+find_package (CONFIG REQUIRED COMPONENTS libconfig++)
 message (STATUS "CONFIG++_INCLUDE_DIR  = ${CONFIG++_INCLUDE_DIR}")
 message (STATUS "CONFIG++_LIBRARY      = ${CONFIG++_LIBRARY}")
 
