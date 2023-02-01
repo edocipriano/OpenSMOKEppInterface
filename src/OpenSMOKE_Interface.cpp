@@ -124,6 +124,22 @@ void OpenSMOKE_GasProp_SetTemperature (const double T) {
   kineticsMapXML->SetTemperature(T);
 }
 
+void OpenSMOKE_GasProp_KineticConstants (void) {
+  kineticsMapXML->KineticConstants();
+}
+
+void OpenSMOKE_GasProp_ReactionRates (const double * c) {
+  kineticsMapXML->ReactionRates(c);
+}
+
+void OpenSMOKE_GasProp_FormationRates (double * R) {
+  kineticsMapXML->FormationRates(R);
+}
+
+double OpenSMOKE_GasProp_HeatRelease (const double * R) {
+  return kineticsMapXML->HeatRelease(R);
+}
+
 double OpenSMOKE_MW (const int i) {
   return thermodynamicsMapXML->MW(i);
 }
@@ -224,7 +240,7 @@ void OpenSMOKE_ODESolver
   // Check the solution
   if (status > 0)
   {
-    Eigen::VectorXd yf_eigen(1);
+    Eigen::VectorXd yf_eigen;
     ode_solver.Solution(yf_eigen);
     for (int i=0; i<yf_eigen.size(); i++)
       y[i] = yf_eigen[i];
