@@ -49,7 +49,10 @@ namespace OpenSMOKE
   {
   public:
 
-    ODESystem_Interface() {args_ = NULL;}
+    //ODESystem_Interface() { args_ = NULL; }
+    ODESystem_Interface() {}
+
+    ~ODESystem_Interface () {}
 
     void SetSystemOfEquations(odefunction odefun)
     {

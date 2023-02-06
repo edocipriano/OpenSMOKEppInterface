@@ -44,6 +44,9 @@ OpenSMOKE::KineticsMap_Liquid_CHEMKIN*       kineticsLiquidMapXML;
 
 speciesMap* species_map;
 
+// Create ODE parameters class
+OpenSMOKE::ODE_Parameters* ode_parameters_;
+
 struct {
   double T, P;
 } gasdata;
@@ -60,6 +63,29 @@ void OpenSMOKE_Init (void) {
   thermodynamicsLiquidMapXML = NULL;
   kineticsLiquidMapXML = NULL;
   species_map = NULL;
+}
+
+void OpenSMOKE_InitODESolver (void) {
+
+  //ode_solver = new OdeSMOKE::MultiValueSolver<methodGear>;
+  ode_parameters_ = new OpenSMOKE::ODE_Parameters;
+}
+
+void OpenSMOKE_Clean (void) {
+  delete thermodynamicsMapXML;
+  delete kineticsMapXML;
+  delete transportMapXML;
+  thermodynamicsMapXML = NULL;
+  kineticsMapXML = NULL;
+  transportMapXML = NULL;
+  //delete thermodynamicsLiquidMapXML;
+  //delete kineticsLiquidMapXML;
+  //delete species_map;
+}
+
+void OpenSMOKE_CleanODESolver (void) {
+  //delete ode_solver;
+  delete ode_parameters_;
 }
 
 void OpenSMOKE_ReadKinetics (void) {
@@ -100,6 +126,10 @@ void OpenSMOKE_ReadLiquidProperties (void) {
 
 int OpenSMOKE_NumberOfSpecies (void) {
   return thermodynamicsMapXML->NumberOfSpecies();
+}
+
+int OpenSMOKE_NumberOfLiquidSpecies (void) {
+  return thermodynamicsLiquidMapXML->number_of_liquid_species();
 }
 
 int OpenSMOKE_NumberOfReactions (void) {
@@ -148,6 +178,10 @@ const char* OpenSMOKE_NamesOfSpecies (const int i) {
   return thermodynamicsMapXML->NamesOfSpecies()[i].c_str();
 }
 
+const char* OpenSMOKE_NamesOfLiquidSpecies (const int i) {
+  return thermodynamicsLiquidMapXML->vector_names_liquid_species()[i].c_str();
+}
+
 int OpenSMOKE_IndexOfSpecies (const char* s) {
   return thermodynamicsMapXML->IndexOfSpecies(s) - 1;
 }
@@ -193,7 +227,7 @@ void OpenSMOKE_MoleFractions_From_MassFractions (double* x, double* MW, const do
 void OpenSMOKE_ODESolver
 (
   odefunction ode,
-  int neq,
+  unsigned int neq,
   double dt,
   double * y,
   void * args
@@ -205,30 +239,27 @@ void OpenSMOKE_ODESolver
   for (int i=0; i<y0_eigen.size(); i++)
     y0_eigen[i] = y[i];
 
-  // Create ODE parameters class
-  OpenSMOKE::ODE_Parameters ode_parameters_;
-
   // Create the solver
   typedef OdeSMOKE::KernelDense<OpenSMOKE::ODESystem_Interface> denseOde;
   typedef OdeSMOKE::MethodGear<denseOde> methodGear;
   OdeSMOKE::MultiValueSolver<methodGear> ode_solver;
 
-  // Set the ODE system of equations function
+  //// Set the ODE system of equations function
   ode_solver.SetUserArgs(args);
   ode_solver.SetSystemOfEquations(ode);
 
-  // Set initial conditions
+  //// Set initial conditions
   ode_solver.SetInitialConditions(t0, y0_eigen);
 
-  // Set linear algebra options
-  ode_solver.SetLinearAlgebraSolver(ode_parameters_.linear_algebra());
-  ode_solver.SetFullPivoting(ode_parameters_.full_pivoting());
+  //// Set linear algebra options
+  ode_solver.SetLinearAlgebraSolver(ode_parameters_->linear_algebra());
+  ode_solver.SetFullPivoting(ode_parameters_->full_pivoting());
 
-  // Set relative and absolute tolerances
-  ode_solver.SetAbsoluteTolerances(ode_parameters_.absolute_tolerance());
-  ode_solver.SetRelativeTolerances(ode_parameters_.relative_tolerance());
+  //// Set relative and absolute tolerances
+  ode_solver.SetAbsoluteTolerances(ode_parameters_->absolute_tolerance());
+  ode_solver.SetRelativeTolerances(ode_parameters_->relative_tolerance());
 
-  // Set minimum and maximum values
+  //// Set minimum and maximum values
   //ode_solver.SetMinimumValues(0.);
   //ode_solver.SetMaximumValues(1.);
 
