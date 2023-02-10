@@ -86,6 +86,7 @@ void OpenSMOKE_Clean (void) {
 void OpenSMOKE_CleanODESolver (void) {
   //delete ode_solver;
   delete ode_parameters_;
+  ode_parameters_ = NULL;
 }
 
 void OpenSMOKE_ReadKinetics (void) {
@@ -222,6 +223,17 @@ void OpenSMOKE_MassFractions_From_MoleFractions (double* y, double* MW, const do
 
 void OpenSMOKE_MoleFractions_From_MassFractions (double* x, double* MW, const double* y) {
   return thermodynamicsMapXML->MoleFractions_From_MassFractions(x,*MW,y);
+}
+
+double OpenSMOKE_GetMixtureFractionFromMassFractions (const double* y, const double* yfuel, const double* yox) {
+  std::vector<std::string> names = thermodynamicsMapXML->NamesOfSpecies();
+  std::vector<double> yfuelstd (thermodynamicsMapXML->NumberOfSpecies());
+  std::vector<double> yoxstd (thermodynamicsMapXML->NumberOfSpecies());
+  for (int jj=0; jj<thermodynamicsMapXML->NumberOfSpecies(); jj++) {
+    yfuelstd[jj] = yfuel[jj];
+    yoxstd[jj] = yox[jj];
+  }
+  return thermodynamicsMapXML->GetMixtureFractionFromMassFractions (y, names, yfuelstd, names, yoxstd);
 }
 
 void OpenSMOKE_ODESolver

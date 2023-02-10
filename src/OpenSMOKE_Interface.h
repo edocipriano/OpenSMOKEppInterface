@@ -38,6 +38,7 @@ double OpenSMOKE_MolecularWeight_From_MoleFractions (const double* x);
 double OpenSMOKE_MolecularWeight_From_MassFractions (const double* x);
 void OpenSMOKE_MassFractions_From_MoleFractions (double* y, double* MW, const double* x);
 void OpenSMOKE_MoleFractions_From_MassFractions (double* x, double* MW, const double* y);
+double OpenSMOKE_GetMixtureFractionFromMassFractions (const double* y, const double* yfuel, const double* yox);
 void OpenSMOKE_ODESolver (odefunction ode, unsigned int neq, double dt, double * y, void * args);
 
 #ifdef __cplusplus
