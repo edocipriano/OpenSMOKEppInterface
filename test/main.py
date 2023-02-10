@@ -1,7 +1,7 @@
 
 from ctypes import *
 
-OpenSMOKE = cdll.LoadLibrary("../build/libopensmoke.so")
+OpenSMOKE = cdll.LoadLibrary("../build/libopensmoke.dylib")
 
 OpenSMOKE.OpenSMOKE_Init()
 OpenSMOKE.OpenSMOKE_ReadKinetics()
