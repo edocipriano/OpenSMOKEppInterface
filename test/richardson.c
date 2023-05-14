@@ -22,7 +22,13 @@ void richardson (const double * y, const double dt, double * dy, void * args) {
   dy[2] =  k3*y2*y2;
 }
 
+void foo (void) {
+  printf ("Hello from foo\n");
+}
+
 int main (void) {
+  OpenSMOKE_InitODESolver ();
+
   int neq = 3;
   double y0[] = {1., 0., 0.};
   ///double dt = 4.e+10;
@@ -39,6 +45,7 @@ int main (void) {
     printf ("y0[%d] = %.16f\n", i, y0[i]);
   }
 
+  OpenSMOKE_CleanODESolver ();
   return 0;
 }
 

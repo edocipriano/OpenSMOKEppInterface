@@ -89,9 +89,9 @@ void OpenSMOKE_CleanODESolver (void) {
   ode_parameters_ = NULL;
 }
 
-void OpenSMOKE_ReadKinetics (void) {
+void OpenSMOKE_ReadKinetics (const char* kinfolder) {
 
-  boost::filesystem::path path_kinetics = "kinetics";
+  boost::filesystem::path path_kinetics = boost::filesystem::exists(kinfolder) ? kinfolder : "kinetics";
   boost::property_tree::ptree ptree;
   boost::property_tree::read_xml( (path_kinetics / "kinetics.xml").c_str(), ptree );
 

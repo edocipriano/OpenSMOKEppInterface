@@ -12,7 +12,7 @@ void OpenSMOKE_Init (void);
 void OpenSMOKE_InitODESolver (void);
 void OpenSMOKE_Clean (void);
 void OpenSMOKE_CleanODESolver (void);
-void OpenSMOKE_ReadKinetics (void);
+void OpenSMOKE_ReadKinetics (const char* kinfolder);
 void OpenSMOKE_ReadLiquidKinetics (void);
 void OpenSMOKE_ReadLiquidProperties (void);
 int OpenSMOKE_NumberOfSpecies (void);
