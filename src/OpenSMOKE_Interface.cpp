@@ -105,24 +105,32 @@ void OpenSMOKE_ReadKinetics (const char* kinfolder) {
   std::cout<< "Time to read XML file: " << tEnd - tStart << endl; 
 }
 
-void OpenSMOKE_ReadLiquidKinetics (void) {
+void OpenSMOKE_ReadLiquidKinetics (const char* kinfolder) {
 
-  boost::filesystem::path path_kinetics = "kinetics";
+  boost::filesystem::path path_kinetics = boost::filesystem::exists(kinfolder) ? kinfolder : "kinetics";
   boost::property_tree::ptree ptree;
-  boost::property_tree::read_xml( (path_kinetics / "kinetics.liquid.xml").string(), ptree );
+  if (boost::filesystem::exists (path_kinetics / "kinetics.liquid.xml")) {
+    boost::property_tree::read_xml( (path_kinetics / "kinetics.liquid.xml").string(), ptree );
 
-  double tStart = OpenSMOKE::OpenSMOKEGetCpuTime();
+    double tStart = OpenSMOKE::OpenSMOKEGetCpuTime();
 
-  thermodynamicsLiquidMapXML = new OpenSMOKE::ThermodynamicsMap_Liquid_CHEMKIN(ptree);
-  kineticsLiquidMapXML = new OpenSMOKE::KineticsMap_Liquid_CHEMKIN(*thermodynamicsLiquidMapXML, ptree, 1); 
+    thermodynamicsLiquidMapXML = new OpenSMOKE::ThermodynamicsMap_Liquid_CHEMKIN(ptree);
+    kineticsLiquidMapXML = new OpenSMOKE::KineticsMap_Liquid_CHEMKIN(*thermodynamicsLiquidMapXML, ptree, 1); 
 
-  double tEnd = OpenSMOKE::OpenSMOKEGetCpuTime();
-  std::cout<< "Time to read XML file: " << tEnd - tStart << endl; 
-
+    double tEnd = OpenSMOKE::OpenSMOKEGetCpuTime();
+    std::cout<< "Time to read XML file: " << tEnd - tStart << endl; 
+  }
+  else
+    std::cout<< "Unable to read kinetics.liquid.xml" << std::endl;
 }
 
-void OpenSMOKE_ReadLiquidProperties (void) {
-  species_map = new speciesMap("LiquidProperties");
+void OpenSMOKE_ReadLiquidProperties (const char* liqpropfolder) {
+  std::string opensmoke_interface_root = std::getenv ("OPENSMOKE_INTERFACE");
+  boost::filesystem::path path_liqprop
+    = boost::filesystem::exists(liqpropfolder)
+    ? liqpropfolder
+    : opensmoke_interface_root.append ("/kinetics/LiquidProperties/LiquidProperties");
+  species_map = new speciesMap (path_liqprop);
 }
 
 int OpenSMOKE_NumberOfSpecies (void) {
@@ -209,6 +217,74 @@ double OpenSMOKE_GasProp_Density_IdealGas (double T, double P, double MW) {
   return OpenSMOKE_GasProp_Concentrations(T,P)*MW;
 }
 
+double OpenSMOKE_LiqProp_Density_PureSpecies (const char* s, double T, double P) {
+  return species_map->rhoL(s, T, P);
+}
+
+double OpenSMOKE_LiqProp_Density_Mix_AddVol (double T, double P, const double* x) {
+  double y[OpenSMOKE_NumberOfLiquidSpecies()];
+  double MWmix = 0.;
+  thermodynamicsLiquidMapXML->LiquidMassFractions_From_LiquidMoleFractions (y, MWmix, x);
+  double urho = 0.;
+  for (unsigned int i=0; i<OpenSMOKE_NumberOfLiquidSpecies(); i++) {
+    std::string species_name = OpenSMOKE_NamesOfLiquidSpecies (i);
+    species_name.erase (species_name.length() - 3);
+    urho += y[i]/species_map->rhoL(species_name, T, P);
+  }
+  return 1./urho;
+}
+
+double OpenSMOKE_LiqProp_DynamicViscosity_PureSpecies (const char* s, double T) {
+  return species_map->etaL(s, T);
+}
+
+double OpenSMOKE_LiqProp_DynamicViscosity_Mix (double T, const double* x) {
+  double mumix = 0.;
+  for (unsigned int i=0; i<OpenSMOKE_NumberOfLiquidSpecies(); i++) {
+    std::string species_name = OpenSMOKE_NamesOfLiquidSpecies (i);
+    species_name.erase (species_name.length() - 3);
+    double etaLi = species_map->etaL (species_name, T);
+    mumix += x[i] * std::log (etaLi);
+  }
+  return std::exp (mumix);
+}
+
+double OpenSMOKE_LiqProp_ThermalConductivity_PureSpecies (const char* s, double T) {
+  return species_map->lambdaL(s, T);
+}
+
+double OpenSMOKE_LiqProp_ThermalConductivity_Mix (double T, const double* x) {
+  // Vredeveld method (1973) - From Prausnitz page 10.60
+  double y[OpenSMOKE_NumberOfLiquidSpecies()];
+  double MWmix = 0.;
+  thermodynamicsLiquidMapXML->LiquidMassFractions_From_LiquidMoleFractions (y, MWmix, x);
+  double lambdaMix = 0.;
+  for (unsigned int i=0; i<OpenSMOKE_NumberOfLiquidSpecies(); i++) {
+    std::string species_name = OpenSMOKE_NamesOfLiquidSpecies (i);
+    species_name.erase (species_name.length() - 3);
+    double lambdaLi = species_map->lambdaL(species_name, T);
+    lambdaMix += y[i] * std::pow(lambdaLi, -2.);
+  }
+  return std::pow (lambdaMix, -0.5);
+}
+
+double OpenSMOKE_LiqProp_cp_PureSpecies (const char* s, double T) {
+  return species_map->cpL(s, T);
+}
+
+double OpenSMOKE_LiqProp_cp_Mix (double T, const double* x) {
+  double y[OpenSMOKE_NumberOfLiquidSpecies()];
+  double MWmix = 0.;
+  thermodynamicsLiquidMapXML->LiquidMassFractions_From_LiquidMoleFractions (y, MWmix, x);
+  double cpmix = 0.;
+  for (unsigned int i=0; i<OpenSMOKE_NumberOfLiquidSpecies(); i++) {
+    std::string species_name = OpenSMOKE_NamesOfLiquidSpecies (i);
+    species_name.erase (species_name.length() - 3);
+    double cpi = species_map->cpL (species_name, T);
+    cpmix += y[i] * cpi;
+  }
+}
+
 double OpenSMOKE_MolecularWeight_From_MoleFractions (const double* x) {
   return thermodynamicsMapXML->MolecularWeight_From_MoleFractions(x);
 }
@@ -217,12 +293,28 @@ double OpenSMOKE_MolecularWeight_From_MassFractions (const double* x) {
   return thermodynamicsMapXML->MolecularWeight_From_MassFractions(x);
 }
 
+double OpenSMOKE_LiquidMolecularWeight_From_LiquidMoleFractions (const double* x) {
+  return thermodynamicsLiquidMapXML->LiquidMolecularWeight_From_LiquidMoleFractions (x);
+}
+
+double OpenSMOKE_LiquidMolecularWeight_From_LiquidMassFractions (const double* x) {
+  return thermodynamicsLiquidMapXML->LiquidMolecularWeight_From_LiquidMassFractions (x);
+}
+
 void OpenSMOKE_MassFractions_From_MoleFractions (double* y, double* MW, const double* x) {
-  return thermodynamicsMapXML->MassFractions_From_MoleFractions(y,*MW,x);
+  thermodynamicsMapXML->MassFractions_From_MoleFractions (y, *MW, x);
 }
 
 void OpenSMOKE_MoleFractions_From_MassFractions (double* x, double* MW, const double* y) {
-  return thermodynamicsMapXML->MoleFractions_From_MassFractions(x,*MW,y);
+   thermodynamicsMapXML->MoleFractions_From_MassFractions (x, *MW ,y);
+}
+
+void OpenSMOKE_LiquidMassFractions_From_LiquidMoleFractions (double* y, double* MW, const double* x) {
+  thermodynamicsLiquidMapXML->LiquidMassFractions_From_LiquidMoleFractions (y, *MW, x);
+}
+
+void OpenSMOKE_LiquidMoleFractions_From_LiquidMassFractions (double* x, double* MW, const double* y) {
+  thermodynamicsLiquidMapXML->LiquidMoleFractions_From_LiquidMassFractions (x, *MW, y);
 }
 
 double OpenSMOKE_GetMixtureFractionFromMassFractions (const double* y, const double* yfuel, const double* yox) {

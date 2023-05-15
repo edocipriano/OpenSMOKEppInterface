@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <opensmoke version="0.1a">
 <reaction-number>
-1
+0
 </reaction-number>
 <reaction-names>
-NC7H16+11O2=>7CO2+8H2O
 </reaction-names>
 </opensmoke>

@@ -14,11 +14,11 @@
 
 Dictionary CHEMKIN_PreProcessor
 {
-		@Thermodynamics ../../common/thermo.enriched.CKT;
-		@Transport		  ../../common/transport.enriched.TRC;
-		@Kinetics 		  gas.n-heptane-combustion.CKI;
-		@Liquid			    liquid.n-heptane-noreactions.CKI;
-		
-		@Output			kinetics;
+    @Thermodynamics ../../common/thermo.enriched.CKT;
+    @Transport      ../../common/transport.enriched.TRC;
+    @Kinetics       gas.n-heptane-combustion.CKI;
+    @Liquid         liquid.n-heptane-noreactions.CKI;
+
+    @Output     kinetics;
 }
 

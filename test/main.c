@@ -5,7 +5,7 @@
 
 int main (void) {
   OpenSMOKE_Init();
-  OpenSMOKE_ReadKinetics();
+  OpenSMOKE_ReadKinetics("one-step/heptane");
   OpenSMOKE_ReadLiquidKinetics();
   OpenSMOKE_ReadLiquidProperties();
 
