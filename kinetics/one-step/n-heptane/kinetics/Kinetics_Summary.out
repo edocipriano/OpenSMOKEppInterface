@@ -61,5 +61,7 @@
 
       1. NC7H16 + 11O2  => 7CO2 + 8H2O 
          k:       5.100000e+11	    0.00      30000.00
+         Reaction order of species NC7H16             equal to 0.2500
+         Reaction order of species O2                 equal to 1.5000
 
 

@@ -13,6 +13,8 @@ END
 REACTIONS
 
 NC7H16+11O2=>7CO2+8H2O                                  5.1000e+11    0.000     30000.00
+ FORD /  NC7H16  0.2500/
+ FORD /  O2  1.5000/
 
 END
 
