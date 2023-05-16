@@ -5,9 +5,9 @@
 
 int main (void) {
   OpenSMOKE_Init();
-  OpenSMOKE_ReadKinetics("one-step/heptane");
-  OpenSMOKE_ReadLiquidKinetics();
-  OpenSMOKE_ReadLiquidProperties();
+  OpenSMOKE_ReadKinetics("../kinetics/one-step/n-heptane/kinetics");
+  OpenSMOKE_ReadLiquidKinetics("../kinetics/one-step/n-heptane/kinetics");
+  OpenSMOKE_ReadLiquidProperties("../kinetics/LiquidProperties/LiquidProperties");
 
   printf ("NumberOfSpecies   = %d\n", OpenSMOKE_NumberOfSpecies());
   printf ("NumberOfReactions = %d\n", OpenSMOKE_NumberOfReactions());
@@ -59,7 +59,7 @@ int main (void) {
 
   printf ("Air density (298K) = %f\n", OpenSMOKE_GasProp_Density_IdealGas(298., 101325., MWGasMix));
   printf ("Air density (773K) = %f\n", OpenSMOKE_GasProp_Density_IdealGas(773., 101325., MWGasMix));
-  printf ("CpMix              = %f\n", OpenSMOKE_GasProp_cpMolar_Mixture_From_MoleFractions(xgas));
+  printf ("CpMix              = %f\n", OpenSMOKE_GasProp_HeatCapacity(xgas));
 
   return 0;
 }

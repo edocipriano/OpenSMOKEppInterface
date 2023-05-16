@@ -23,8 +23,8 @@ int main (void) {
 
   int neq = 1;
   double y0[] = {D0*D0};
-  double dt = 0.001;
-  double tadend = 30.;
+  double dt = 0.0001;
+  double tadend = 5.;
   double tend = tadend*sq (D0) / Dmix2;
 
   FILE * fp = fopen ("profiles", "w");
