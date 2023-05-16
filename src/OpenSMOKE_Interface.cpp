@@ -203,7 +203,7 @@ double OpenSMOKE_GasProp_ThermalConductivity (double* x) {
   return transportMapXML->ThermalConductivity(x);
 }
 
-double OpenSMOKE_GasProp_cpMolar_Mixture_From_MoleFractions (const double* x) {
+double OpenSMOKE_GasProp_HeatCapacity (const double* x) {
   double MW = OpenSMOKE_MolecularWeight_From_MoleFractions (x);
   double Cp = thermodynamicsMapXML->cpMolar_Mixture_From_MoleFractions(x);
   return Cp/MW;
@@ -268,11 +268,11 @@ double OpenSMOKE_LiqProp_ThermalConductivity_Mix (double T, const double* x) {
   return std::pow (lambdaMix, -0.5);
 }
 
-double OpenSMOKE_LiqProp_cp_PureSpecies (const char* s, double T) {
+double OpenSMOKE_LiqProp_HeatCapacity_PureSpecies (const char* s, double T) {
   return species_map->cpL(s, T);
 }
 
-double OpenSMOKE_LiqProp_cp_Mix (double T, const double* x) {
+double OpenSMOKE_LiqProp_HeatCapacity_Mix (double T, const double* x) {
   double y[OpenSMOKE_NumberOfLiquidSpecies()];
   double MWmix = 0.;
   thermodynamicsLiquidMapXML->LiquidMassFractions_From_LiquidMoleFractions (y, MWmix, x);
@@ -283,6 +283,14 @@ double OpenSMOKE_LiqProp_cp_Mix (double T, const double* x) {
     double cpi = species_map->cpL (species_name, T);
     cpmix += y[i] * cpi;
   }
+}
+
+double OpenSMOKE_LiqProp_VaporPressure (const char* s, double T, double P) {
+  return species_map->pVap(s, T, P);
+}
+
+double OpenSMOKE_LiqProp_VaporizationEnthalpy (const char* s, double T) {
+  return species_map->deltaHv(s, T);
 }
 
 double OpenSMOKE_MolecularWeight_From_MoleFractions (const double* x) {
