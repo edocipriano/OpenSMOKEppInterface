@@ -200,6 +200,15 @@ double
   OpenSMOKE_GasProp_HeatCapacity (const double* x);
 
 /**
+### *OpenSMOKE_GasProp_Dmix()* Mixture diffusion coefficients
+
+* *x*: mole fractions in gas phase
+* *i*: index of the species
+*/
+double
+  OpenSMOKE_GasProp_Dmix (const double* x, const int i);
+
+/**
 ### *OpenSMOKE_MolecularWeight_From_MoleFractions()*: Mixture molecular weight from mole fractions in gas phase
 
 * *x*: mole fractions in gas phase

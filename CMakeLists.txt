@@ -37,7 +37,7 @@ find_package (Eigen3 REQUIRED)
 message (STATUS "Eigen_LIBRARIES       = ${EIGEN3_INCLUDE_DIR}")
 
 # --- OpenSmoke++ (Compulsory)
-set (OPENSMOKE_INCLUDE_DIR $ENV{OPENSMOKE_LIBRARY_PATH})
+set (OPENSMOKE_INCLUDE_DIR $ENV{OPENSMOKE_LATEST})
 message (STATUS "OpenSmoke++           = ${OPENSMOKE_INCLUDE_DIR}")
 
 # --- libconfig++
