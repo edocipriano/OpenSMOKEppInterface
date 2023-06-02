@@ -290,6 +290,7 @@ double OpenSMOKE_LiqProp_HeatCapacity_Mix (double T, const double* x) {
     double cpi = species_map->cpL (species_name, T);
     cpmix += y[i] * cpi;
   }
+  return cpmix;
 }
 
 double OpenSMOKE_LiqProp_VaporPressure (const char* s, double T, double P) {
