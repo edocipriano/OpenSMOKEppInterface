@@ -211,7 +211,7 @@ double OpenSMOKE_GasProp_HeatCapacity (const double* x) {
 
 double OpenSMOKE_GasProp_Dmix (const double* x, const int i) {
   const double baseline_diffusion = 1e-10;
-  double Diffs[thermodynamicsLiquidMapXML->NumberOfSpecies()];
+  double Diffs[thermodynamicsMapXML->NumberOfSpecies()];
   transportMapXML->MassDiffusionCoefficients (Diffs, x, transportMapXML->is_species_bundling());
   return Diffs[i] + baseline_diffusion;
 }
