@@ -381,6 +381,39 @@ double
   OpenSMOKE_LiqProp_VaporizationEnthalpy (const char* s, double T);
 
 /**
+### *OpenSMOKE_LiqProp_Dmix_PerkinsGeankopolis()* Mixture diffusion coefficients (Perkins Geankopolis model)
+
+* *T*: temperature in liquid phase
+* *P*: Pressure in liquid phase
+* *x*: mole fractions in liquid phase
+* *i*: index of the species
+*/
+double
+  OpenSMOKE_LiqProp_Dmix_PerkinsGeankopolis (double T, double P, const double* x, const int i);
+
+/**
+### *OpenSMOKE_LiqProp_Dmix_Cullinan()* Mixture diffusion coefficients (Cullinan model)
+
+* *T*: temperature in liquid phase
+* *P*: Pressure in liquid phase
+* *x*: mole fractions in liquid phase
+* *i*: index of the species
+*/
+double
+  OpenSMOKE_LiqProp_Dmix_Cullinan (double T, double P, const double* x, const int i);
+
+/**
+### *OpenSMOKE_LiqProp_Dmix_LefflerCullinan()* Mixture diffusion coefficients (Leffler Cullinan model)
+
+* *T*: temperature in liquid phase
+* *P*: Pressure in liquid phase
+* *x*: mole fractions in liquid phase
+* *i*: index of the species
+*/
+double
+  OpenSMOKE_LiqProp_Dmix_LefflerCullinan (double T, double P, const double* x, const int i);
+
+/**
 ### *OpenSMOKE_LiquidMolecularWeight_From_LiquidMoleFractions()*: Mixture molecular weight from mole fractions in liquid phase
 
 * *x*: mole fractions in liquid phase
