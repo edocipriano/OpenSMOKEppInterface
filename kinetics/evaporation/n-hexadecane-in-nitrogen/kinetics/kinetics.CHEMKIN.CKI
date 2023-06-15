@@ -1,0 +1,14 @@
+ELEMENTS
+C
+H
+N
+END
+
+SPECIES
+NC16H34                       N2                            
+END
+
+REACTIONS
+
+END
+
