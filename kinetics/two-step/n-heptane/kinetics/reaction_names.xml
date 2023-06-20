@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<opensmoke version="0.1a">
+<reaction-number>
+3
+</reaction-number>
+<reaction-names>
+NC7H16+7.5O2=>7CO+8H2O
+0.5O2+CO=>CO2
+CO2=>0.5O2+CO
+</reaction-names>
+</opensmoke>

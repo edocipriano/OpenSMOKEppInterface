@@ -191,6 +191,16 @@ void OpenSMOKE_GasProp_SetTemperature (const double T) {
   kineticsMapXML->SetTemperature(T);
 }
 
+void OpenSMOKE_LiqProp_SetPressure (const double P) {
+  thermodynamicsLiquidMapXML->SetPressure(P);
+  kineticsLiquidMapXML->SetPressure(P);
+}
+
+void OpenSMOKE_LiqProp_SetTemperature (const double T) {
+  thermodynamicsLiquidMapXML->SetTemperature(T);
+  kineticsLiquidMapXML->SetTemperature(T);
+}
+
 void OpenSMOKE_GasProp_KineticConstants (void) {
   kineticsMapXML->KineticConstants();
 }
@@ -410,6 +420,15 @@ void OpenSMOKE_LiquidMoleFractions_From_LiquidMassFractions (double* x, double* 
   thermodynamicsLiquidMapXML->LiquidMoleFractions_From_LiquidMassFractions (x, *MW, y);
 }
 
+void OpenSMOKE_CheckAndCorrectSumOfFractions (double* x, int n) {
+  std::vector<double> v(n);
+  for (int jj=0; jj<v.size(); jj++)
+    v[jj] = (x[jj] > 0.) ? x[jj] : 0.;
+  OpenSMOKE::CheckAndCorrectSumOfFractions (v);
+  for (int jj=0; jj<v.size(); jj++)
+    x[jj] = v[jj];
+}
+
 double OpenSMOKE_GetMixtureFractionFromMassFractions (const double* y, const double* yfuel, const double* yox) {
   std::vector<std::string> names = thermodynamicsMapXML->NamesOfSpecies();
   std::vector<double> yfuelstd (thermodynamicsMapXML->NumberOfSpecies());
@@ -456,9 +475,15 @@ void OpenSMOKE_ODESolver
   ode_solver.SetAbsoluteTolerances(ode_parameters_->absolute_tolerance());
   ode_solver.SetRelativeTolerances(ode_parameters_->relative_tolerance());
 
+  //Eigen::VectorXd ymins(neq), ymaxs(neq);
+  //ymins.setConstant (0.);
+  //ymaxs.setConstant (1.);
+  //ymins[neq-1] = -1e-32;
+  //ymaxs[neq-1] = +1e+32;
+
   //// Set minimum and maximum values
-  //ode_solver.SetMinimumValues(0.);
-  //ode_solver.SetMaximumValues(1.);
+  //ode_solver.SetMinimumValues(ymins);
+  //ode_solver.SetMaximumValues(ymaxs);
 
   // Solve the system
   double tStart = OpenSMOKE::OpenSMOKEGetCpuTime();

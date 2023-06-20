@@ -157,6 +157,22 @@ void
   OpenSMOKE_GasProp_SetTemperature (const double T);
 
 /**
+### *OpenSMOKE_LiqProp_SetPressure()*: Set Pressure in gas phase
+
+* *P*: pressure in gas phase
+*/
+void
+  OpenSMOKE_LiqProp_SetPressure (const double P);
+
+/**
+### *OpenSMOKE_LiqProp_SetTemperature()*: Set Temperature in gas phase
+
+* *T*: temperature in gas phase
+*/
+void
+  OpenSMOKE_LiqProp_SetTemperature (const double T);
+
+/**
 ### *OpenSMOKE_GasProp_DynamicViscosity()*: Density of the gas phase mixture
 
 * *x*: mole fractions in gas phase
@@ -454,6 +470,15 @@ void
 
 Functions for post-processing and numerical algortihms.
 */
+
+/**
+### *OpenSMOKE_CheckAndCorrectSumOfFractions()*: Mixture fraction using the Bilger formula
+
+* *x*: mass or mole fractions vector
+* *n*: length of the vector
+*/
+void
+  OpenSMOKE_CheckAndCorrectSumOfFractions (double* x, int n);
 
 /**
 ### *OpenSMOKE_GetMixtureFractionFromMassFractions()*: Mixture fraction using the Bilger formula
