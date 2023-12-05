@@ -19,7 +19,8 @@
 #include "dictionary/OpenSMOKE_Dictionary"
 
 // ODE solvers
-#include "math/native-ode-solvers/MultiValueSolver"
+//#include "math/native-ode-solvers/MultiValueSolver"
+//#include "math/native-ode-solvers/OpenSMOKE_OdeSystemObject.h"
 #include "math/external-ode-solvers/ODE_Parameters.h"
 
 // Utilities
@@ -245,6 +246,12 @@ double OpenSMOKE_GasProp_HeatCapacity (const double* x) {
   double MW = OpenSMOKE_MolecularWeight_From_MoleFractions (x);
   double Cp = thermodynamicsMapXML->cpMolar_Mixture_From_MoleFractions(x);
   return Cp/MW;
+}
+
+void OpenSMOKE_GasProp_HeatCapacity_PureSpecies (double * cp) {
+  thermodynamicsMapXML->cpMolar_Species (cp);
+  for (unsigned int i=0; i<OpenSMOKE_NumberOfSpecies(); i++)
+    cp[i] /= OpenSMOKE_MW (i);
 }
 
 double OpenSMOKE_GasProp_Dmix (const double* x, const int i) {
