@@ -1,0 +1,16 @@
+ELEMENTS
+C
+H
+O
+N
+END
+
+SPECIES
+C2H5OH                        N2                            O2                            
+CO                            CO2                           H2O                           
+END
+
+REACTIONS
+
+END
+

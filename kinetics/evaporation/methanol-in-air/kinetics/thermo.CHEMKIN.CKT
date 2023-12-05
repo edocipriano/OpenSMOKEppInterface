@@ -1,0 +1,23 @@
+! This thermodynamic database was obtained by fitting the thermodynamic properties
+! extracted from the following file: CRECK_2003_C1_C3_HT.CKT
+! The thermodynamic properties are fitted in order to preserve not only the 
+! continuity of each function at the intermediate temperature, but also the  continuity
+! of the derivatives, from the 1st to the 3rd order
+! The intermediate temperatures are chosen in order to minimize the fitting error.
+! Last update: 12/3/2023
+
+THERMO ALL
+270.   1000.   3500. 
+CH3OH                   C   1H   4O   1     G    300.00   3500.00 1800.00      1
+ 2.71701641e+00 1.21538330e-02-5.02106867e-06 1.01068022e-09-8.18460330e-14    2
+-2.57693414e+04 9.47419935e+00 8.47330413e-01 1.63086907e-02-8.48345015e-06    3
+ 2.29304373e-09-2.59952076e-13-2.50962544e+04 1.95933300e+01                   4
+N2                      N   2               G    200.00   3500.00 1050.00      1
+ 2.81166073e+00 1.67067353e-03-6.79997421e-07 1.32881376e-10-1.02767438e-14    2
+-8.69811581e+02 6.64838048e+00 3.73100682e+00-1.83159730e-03 4.32324661e-06    3
+-3.04378150e-09 7.46071560e-13-1.06287426e+03 2.16821198e+00                   4
+O2                      O   2               G    200.00   3500.00  700.00      1
+ 2.82012408e+00 2.48211357e-03-1.51202094e-06 4.48556199e-10-4.87305665e-14    2
+-9.31350152e+02 7.94914552e+00 3.74403921e+00-2.79740146e-03 9.80122556e-06    3
+-1.03259643e-08 3.79931246e-12-1.06069827e+03 3.82132646e+00                   4
+END

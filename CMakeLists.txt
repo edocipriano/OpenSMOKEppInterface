@@ -17,6 +17,23 @@ set (VERSION "0.2.0")
 set (INSTALL_BIN_DIR "${CMAKE_INSTALL_PREFIX}/bin" CACHE PATH "Installation directory for executables")
 set (CMAKE_OSX_DEPLOYMENT_TARGET 12.0)
 
+include(GNUInstallDirs)
+
+if (APPLE)
+  set(rbase "@loader_path")
+else ()
+  set(rbase "$ORIGIN")
+endif ()
+
+file(RELATIVE_PATH lib_dir
+     "${CMAKE_CURRENT_BINARY_DIR}/${CMAKE_INSTALL_BINDIR}"
+     "${CMAKE_CURRENT_BINARY_DIR}/${CMAKE_INSTALL_LIBDIR}")
+
+# Honor user overrides, whether at the command line or FetchContent
+set(CMAKE_INSTALL_RPATH "${rbase};${rbase}/${libdir}"
+    CACHE STRING "Install RPATH")
+
+
 if( NOT CMAKE_BUILD_TYPE)
   set (CMAKE_BUILD_TYPE Release)
 endif()
@@ -87,6 +104,3 @@ add_library (opensmoke SHARED
     src/OpenSMOKE_Interface.cpp
     src/OpenSMOKE_ODESystem_Interface.h)
 
-#--------------------------------------------------------------------
-# Installing options
-#--------------------------------------------------------------------

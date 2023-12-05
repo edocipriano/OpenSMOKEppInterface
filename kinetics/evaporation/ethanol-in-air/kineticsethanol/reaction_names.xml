@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<opensmoke version="0.1a">
+<reaction-number>
+0
+</reaction-number>
+<reaction-names>
+</reaction-names>
+<reaction-chemkin>
+</reaction-chemkin>
+<stoichiometric-matrix nz="0">
+</stoichiometric-matrix>
+</opensmoke>

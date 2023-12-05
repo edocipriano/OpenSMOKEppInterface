@@ -1,0 +1,366 @@
+<?xml version="1.0" encoding="utf-8"?>
+<opensmoke version="0.1a">
+<Properties>
+  <Author>undefined</Author>
+  <Place>undefined</Place>
+  <Date>2023-12-04</Date>
+  <Time>19:32:26</Time>
+  <Comments>
+no comments
+</Comments>
+</Properties>
+<NumberOfElements>
+4
+</NumberOfElements>
+<NamesOfElements>
+C H O N 
+</NamesOfElements>
+<AtomicComposition>
+2.0000000000e+00 6.0000000000e+00 1.0000000000e+00 0. 
+0. 0. 0. 2.0000000000e+00 
+0. 0. 2.0000000000e+00 0. 
+</AtomicComposition>
+<NumberOfSpecies>
+3
+</NumberOfSpecies>
+<NamesOfSpecies>
+C2H5OH N2 O2 
+</NamesOfSpecies>
+<Thermodynamics type="NASA">
+<NASA-coefficients>
+7.324908269999999888e+00 1.397629769999999931e-02 -4.673667479999999595e-06 6.820636839999999502e-10 -3.470250379999999710e-14 -3.189095739999999932e+04 -1.383130710000000008e+01 -4.222914110000000054e-01 3.358946139999999941e-02 -2.329375960000000132e-05 8.538642660000000470e-09 -1.277832089999999933e-12 -2.944284230000000025e+04 2.708821460000000059e+01 3.000000000000000000e+02 3.500000000000000000e+03 1.580000000000000000e+03 4.606899905204772949e+01
+2.811660729999999830e+00 1.670673529999999957e-03 -6.799974280000000414e-07 1.328813790000000117e-10 -1.027674420000000065e-14 -8.698115790000000516e+02 6.648380500000000026e+00 3.731006820000000168e+00 -1.831597300000000015e-03 4.323246619999999667e-06 -3.043781509999999911e-09 7.460715619999999794e-13 -1.062874260000000049e+03 2.168211980000000150e+00 2.000000000000000000e+02 3.500000000000000000e+03 1.050000000000000000e+03 2.801399993896480112e+01
+2.820124079999999811e+00 2.482113570000000092e-03 -1.512020940000000031e-06 4.485562010000000235e-10 -4.873056680000000308e-14 -9.313501479999999901e+02 7.949145520000000076e+00 3.744039209999999951e+00 -2.797401469999999998e-03 9.801225580000000323e-06 -1.032596429999999949e-08 3.799312469999999865e-12 -1.060698270000000093e+03 3.821326459999999869e+00 2.000000000000000000e+02 3.500000000000000000e+03 7.000000000000000000e+02 3.199799919128417969e+01
+</NASA-coefficients>
+</Thermodynamics>
+<Transport type="CHEMKIN">
+0
+4.606899905204772949e+01
+-2.910725132476017407e+01 7.325363179251806578e+00 -6.169607959021181642e-01 1.726404880607851702e-02 
+-2.466013525706704002e+01 3.790838962705756821e+00 -3.326848862462714607e-01 1.144284213201979261e-02 
+-2.978766404930873790e+01 4.460104705452481610e+00 -2.947970277044759113e-01 1.011804578306452380e-02 
+-2.916585849661916185e+01 4.865222503346644523e+00 -4.003218686116469804e-01 1.667135562602986565e-02 
+-2.949309855151408755e+01 4.975816600977341686e+00 -4.130827258237889654e-01 1.716251448458491063e-02 
+2.801399993896480112e+01
+-1.914115837148572807e-01 -2.815650539345760706e+00 5.406349658840916561e-01 -2.680860954818256245e-02 
+-1.853769421193775102e+01 2.232970914651082772e+00 -2.102014061222551300e-01 9.264621890951153793e-03 
+-2.434890146269841438e+01 3.315939266048979039e+00 -2.179652078379572810e-01 9.526926134206581409e-03 
+-2.462750179098526715e+01 3.424835902195226378e+00 -2.318681314223429712e-01 1.011914764630240937e-02 
+3.199799919128417969e+01
+-1.279702741099322161e+01 2.645997195576371031e+00 -2.409697693851258482e-01 1.033042929631107672e-02 
+-1.906650061182735456e+01 2.494517752061990112e+00 -2.440586231749803381e-01 1.072526084757596636e-02 
+-2.493864927417419608e+01 3.545992995586443097e+00 -2.473795632044218928e-01 1.078186227216248495e-02 
+E
+</Transport>
+<Lennard-Jones>
+7.649935958930305686e-26 4.410000000000000281e-10 4.706000000000000227e+02
+4.651833334699563612e-26 3.621000000000000214e-10 9.753000000000000114e+01
+5.313391861426764189e-26 3.458000000000000363e-10 1.074000000000000057e+02
+</Lennard-Jones>
+<Raw-Transport-Parameters>
+2 4.706000000000000227e+02 4.410000000000000142e+00 0.000000000000000000e+00 0.000000000000000000e+00 1.500000000000000000e+00
+1 9.753000000000000114e+01 3.620999999999999996e+00 0.000000000000000000e+00 1.760000000000000009e+00 4.000000000000000000e+00
+1 1.074000000000000057e+02 3.458000000000000185e+00 0.000000000000000000e+00 1.600000000000000089e+00 3.799999999999999822e+00
+</Raw-Transport-Parameters>
+<SpeciesBundling>
+<SelfDiffusion>
+-2.978766404930873790e+01 4.460104705452481610e+00 -2.947970277044759113e-01 1.011804578306452380e-02 
+-2.434890146269841438e+01 3.315939266048979039e+00 -2.179652078379572810e-01 9.526926134206581409e-03 
+-2.493864927417419608e+01 3.545992995586443097e+00 -2.473795632044218928e-01 1.078186227216248495e-02 
+</SelfDiffusion>
+<Bundling epsilon="1.000000000000000021e-02">
+<NumberOfGroups>
+3
+</NumberOfGroups>
+<ReferenceSpecies>
+3
+0 1 2 
+</ReferenceSpecies>
+<SpeciesInGroups>
+1
+0 
+1
+1 
+1
+2 
+</SpeciesInGroups>
+<GroupOfSpecies>
+3
+0 1 2 
+</GroupOfSpecies>
+</Bundling>
+<Bundling epsilon="2.500000000000000139e-02">
+<NumberOfGroups>
+2
+</NumberOfGroups>
+<ReferenceSpecies>
+2
+1 0 
+</ReferenceSpecies>
+<SpeciesInGroups>
+2
+1 2 
+1
+0 
+</SpeciesInGroups>
+<GroupOfSpecies>
+3
+1 0 0 
+</GroupOfSpecies>
+</Bundling>
+<Bundling epsilon="5.000000000000000278e-02">
+<NumberOfGroups>
+2
+</NumberOfGroups>
+<ReferenceSpecies>
+2
+1 0 
+</ReferenceSpecies>
+<SpeciesInGroups>
+2
+1 2 
+1
+0 
+</SpeciesInGroups>
+<GroupOfSpecies>
+3
+1 0 0 
+</GroupOfSpecies>
+</Bundling>
+<Bundling epsilon="7.499999999999999722e-02">
+<NumberOfGroups>
+2
+</NumberOfGroups>
+<ReferenceSpecies>
+2
+1 0 
+</ReferenceSpecies>
+<SpeciesInGroups>
+2
+1 2 
+1
+0 
+</SpeciesInGroups>
+<GroupOfSpecies>
+3
+1 0 0 
+</GroupOfSpecies>
+</Bundling>
+<Bundling epsilon="1.000000000000000056e-01">
+<NumberOfGroups>
+2
+</NumberOfGroups>
+<ReferenceSpecies>
+2
+1 0 
+</ReferenceSpecies>
+<SpeciesInGroups>
+2
+1 2 
+1
+0 
+</SpeciesInGroups>
+<GroupOfSpecies>
+3
+1 0 0 
+</GroupOfSpecies>
+</Bundling>
+<Bundling epsilon="2.500000000000000000e-01">
+<NumberOfGroups>
+2
+</NumberOfGroups>
+<ReferenceSpecies>
+2
+1 0 
+</ReferenceSpecies>
+<SpeciesInGroups>
+2
+1 2 
+1
+0 
+</SpeciesInGroups>
+<GroupOfSpecies>
+3
+1 0 0 
+</GroupOfSpecies>
+</Bundling>
+<Bundling epsilon="5.000000000000000000e-01">
+<NumberOfGroups>
+2
+</NumberOfGroups>
+<ReferenceSpecies>
+2
+1 0 
+</ReferenceSpecies>
+<SpeciesInGroups>
+2
+1 2 
+1
+0 
+</SpeciesInGroups>
+<GroupOfSpecies>
+3
+1 0 0 
+</GroupOfSpecies>
+</Bundling>
+</SpeciesBundling>
+<Kinetics type="OpenSMOKE" version="04-22-2013">
+<NumberOfReactions>
+0
+</NumberOfReactions>
+<Irreversible>
+0
+</Irreversible>
+<Reversible>
+0
+</Reversible>
+<Reversible-Thermodynamics>
+0
+</Reversible-Thermodynamics>
+<Reversible-Explicit>
+0
+</Reversible-Explicit>
+<ThreeBody>
+0
+</ThreeBody>
+<FallOff>
+0
+<Lindemann>
+0
+</Lindemann>
+<Troe>
+0
+</Troe>
+<SRI>
+0
+</SRI>
+</FallOff>
+<CABR>
+0
+<Lindemann>
+0
+</Lindemann>
+<Troe>
+0
+</Troe>
+<SRI>
+0
+</SRI>
+</CABR>
+<Chebyshev>
+0
+</Chebyshev>
+<PressureLog>
+0
+</PressureLog>
+<ExtendedPressureLog>
+0
+</ExtendedPressureLog>
+<ExtendedFallOff>
+0
+</ExtendedFallOff>
+<FIT1>
+0
+</FIT1>
+<JanevLanger>
+0
+</JanevLanger>
+<LandauTeller>
+0
+</LandauTeller>
+<KineticParameters>
+<Direct>
+<lnA>
+0
+
+</lnA>
+<negative-lnA>
+0
+
+</negative-lnA>
+<Beta>
+0
+
+</Beta>
+<E_over_R>
+0
+
+</E_over_R>
+</Direct>
+</KineticParameters>
+<Stoichiometry type="OpenSMOKE" version="04-22-2013">
+3
+0 0 0 
+3
+0 0 0 
+3
+0 0 0 
+3
+0 0 0 
+3
+0 0 0 
+3
+0 0 0 
+3
+0 0 0 
+3
+0 0 0 
+3
+0 0 0 
+3
+0 0 0 
+3
+0 0 0 
+3
+0 0 0 
+3
+0 0 0 
+3
+0 0 0 
+3
+0 0 0 
+0
+
+0
+
+0
+
+0
+
+0
+
+0
+
+0
+
+0
+
+0
+
+0
+
+0
+
+0
+
+0
+
+0
+
+0
+
+0
+
+0
+
+0
+
+0
+
+0
+0
+</Stoichiometry>
+<GlobalReactions type="none">
+</GlobalReactions>
+</Kinetics>
+</opensmoke>
