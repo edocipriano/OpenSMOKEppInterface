@@ -1,0 +1,15 @@
+ELEMENTS
+C
+H
+O
+N
+END
+
+SPECIES
+NC16H34                       N2                            O2                            
+END
+
+REACTIONS
+
+END
+
