@@ -79,10 +79,10 @@ set(COMPULSORY_INCLUDE ${Boost_INCLUDE_DIRS}
 
 SET(CMAKE_EXE_LINKER_FLAGS "-Wl,--enable-new-dtags")
 
-#add_compile_options(-std=c++11 -fPIC -m64 -w -shared)
-#add_link_options(-std=c++11 -fPIC -m64 -w -shared -lm)
-add_compile_options(-std=c++11 -fPIC -w)
-add_link_options(-std=c++11 -w -shared -lm)
+add_compile_options(-std=c++11 -fPIC -m64 -w -shared)
+add_link_options(-std=c++11 -fPIC -m64 -w -shared -lm)
+#add_compile_options(-std=c++11 -fPIC -w)
+#add_link_options(-std=c++11 -w -shared -lm)
 
 #--------------------------------------------------------------------
 # Include flags
