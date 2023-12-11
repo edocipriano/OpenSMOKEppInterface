@@ -11,6 +11,10 @@ OpenSMOKE_InitODESolver = OpenSMOKE.OpenSMOKE_InitODESolver
 OpenSMOKE_InitODESolver.argtypes = None
 OpenSMOKE_InitODESolver.restype = None
 
+OpenSMOKE_Clean = OpenSMOKE.OpenSMOKE_Clean
+OpenSMOKE_Clean.argtypes = None
+OpenSMOKE_Clean.restype = None
+
 OpenSMOKE_CleanODESolver = OpenSMOKE.OpenSMOKE_CleanODESolver
 OpenSMOKE_CleanODESolver.argtypes = None
 OpenSMOKE_CleanODESolver.restype = None
