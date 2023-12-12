@@ -1,2 +1,2 @@
 # OpenSMOKEppInterface
-C Interface for the OpenSMOKE++ library
+C and Python interface for the OpenSMOKE++ library

@@ -1,7 +1,18 @@
+import platform
 from ctypes import *
 
-OpenSMOKE = cdll.LoadLibrary ("../build/libopensmoke.dylib")
+system = platform.system()
 
+if system == 'Darwin':
+    lib_name = 'libopensmoke.dylib'
+elif system == 'Linux':
+    lib_name = 'libopensmoke.so'
+elif system == 'Windows':
+    lib_name = 'opensmoke.dll'
+else:
+    raise NotImplementedError(f"Unsupported operating system: {system}")
+
+OpenSMOKE = cdll.LoadLibrary ("../build/" + lib_name)
 
 OpenSMOKE_Init = OpenSMOKE.OpenSMOKE_Init
 OpenSMOKE_Init.argtypes = None
@@ -217,5 +228,5 @@ OpenSMOKE_GetMixtureFractionFromMassFractions.restype = c_double
 
 c_odefunction = CFUNCTYPE(None, POINTER(c_double), c_double, POINTER(c_double), c_void_p)
 OpenSMOKE_ODESolver = OpenSMOKE.OpenSMOKE_ODESolver
-OpenSMOKE_ODESolver.argtypes = [c_odefunction, c_int, c_double, POINTER(c_double), c_void_p]
+OpenSMOKE_ODESolver.argtypes = [POINTER(c_odefunction), c_int, c_double, POINTER(c_double), c_void_p]
 
