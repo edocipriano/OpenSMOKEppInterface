@@ -43,6 +43,9 @@ OpenSMOKE::TransportPropertiesMap_CHEMKIN*      transportMapXML;
 OpenSMOKE::ThermodynamicsMap_Liquid_CHEMKIN* thermodynamicsLiquidMapXML;
 OpenSMOKE::KineticsMap_Liquid_CHEMKIN*       kineticsLiquidMapXML;
 
+OpenSMOKE::ThermodynamicsMap_Solid_CHEMKIN* thermodynamicsSolidMapXML;
+OpenSMOKE::KineticsMap_Solid_CHEMKIN* kineticsSolidMapXML;
+
 speciesMap* species_map;
 mixtureL* liqmix;
 
@@ -69,6 +72,8 @@ void OpenSMOKE_Init (void) {
   transportMapXML = NULL;
   thermodynamicsLiquidMapXML = NULL;
   kineticsLiquidMapXML = NULL;
+  thermodynamicsSolidMapXML = NULL;
+  kineticsSolidMapXML = NULL;
   species_map = NULL;
   liqmix = NULL;
 }
@@ -85,6 +90,8 @@ void OpenSMOKE_Clean (void) {
   cleanptr (transportMapXML);
   cleanptr (thermodynamicsLiquidMapXML);
   cleanptr (kineticsLiquidMapXML);
+  cleanptr (thermodynamicsSolidMapXML);
+  cleanptr (kineticsSolidMapXML);
   //cleanptr (species_map); // FIXME: strange behavior
   //cleanptr (liqmix);      // FIXME: strange behavior
 }
@@ -145,6 +152,25 @@ void OpenSMOKE_ReadLiquidKinetics (const char* kinfolder) {
     std::cout<< "Unable to read kinetics.liquid.xml" << std::endl;
 }
 
+void OpenSMOKE_ReadSolidKinetics (const char* kinfolder) {
+
+  boost::filesystem::path path_kinetics = boost::filesystem::exists(kinfolder) ? kinfolder : "kinetics";
+  boost::property_tree::ptree ptree;
+  if (boost::filesystem::exists (path_kinetics / "kinetics.solid.xml")) {
+    boost::property_tree::read_xml( (path_kinetics / "kinetics.solid.xml").string(), ptree );
+
+    double tStart = OpenSMOKE::OpenSMOKEGetCpuTime();
+
+    thermodynamicsSolidMapXML = new OpenSMOKE::ThermodynamicsMap_Solid_CHEMKIN(ptree);
+    kineticsSolidMapXML = new OpenSMOKE::KineticsMap_Solid_CHEMKIN(*thermodynamicsSolidMapXML, ptree, 1); 
+
+    double tEnd = OpenSMOKE::OpenSMOKEGetCpuTime();
+    std::cout<< "Time to read XML file: " << tEnd - tStart << endl; 
+  }
+  else
+    std::cout<< "Unable to read kinetics.solid.xml" << std::endl;
+}
+
 void OpenSMOKE_ReadLiquidProperties (const char* liqpropfolder) {
   std::string opensmoke_interface_root = std::getenv ("OPENSMOKE_INTERFACE");
   boost::filesystem::path path_liqprop
@@ -172,8 +198,16 @@ int OpenSMOKE_NumberOfLiquidSpecies (void) {
   return thermodynamicsLiquidMapXML->number_of_liquid_species();
 }
 
+int OpenSMOKE_NumberOfSolidSpecies (void) {
+  return thermodynamicsSolidMapXML->number_of_solid_species();
+}
+
 int OpenSMOKE_NumberOfReactions (void) {
   return kineticsMapXML->NumberOfReactions();
+}
+
+int OpenSMOKE_NumberOfSolidReactions (void) {
+  return kineticsSolidMapXML->NumberOfReactions();
 }
 
 double OpenSMOKE_Printpi (void) {
@@ -202,6 +236,16 @@ void OpenSMOKE_LiqProp_SetTemperature (const double T) {
   kineticsLiquidMapXML->SetTemperature(T);
 }
 
+void OpenSMOKE_SolProp_SetPressure (const double P) {
+  thermodynamicsSolidMapXML->SetPressure(P);
+  kineticsSolidMapXML->SetPressure(P);
+}
+
+void OpenSMOKE_SolProp_SetTemperature (const double T) {
+  thermodynamicsSolidMapXML->SetTemperature(T);
+  kineticsSolidMapXML->SetTemperature(T);
+} 
+
 void OpenSMOKE_GasProp_KineticConstants (void) {
   kineticsMapXML->KineticConstants();
 }
@@ -214,12 +258,33 @@ void OpenSMOKE_GasProp_FormationRates (double * R) {
   kineticsMapXML->FormationRates(R);
 }
 
+void OpenSMOKE_SolProp_KineticConstants (void) {
+  kineticsSolidMapXML->KineticConstants();
+}
+
+void OpenSMOKE_SolProp_ReactionRates (const double * cgas, const double * csolid) {
+  kineticsSolidMapXML->ReactionRates(cgas, csolid);
+}
+
+void OpenSMOKE_SolProp_FormationRates (double * Rgas, double * Rsolid) {
+  kineticsSolidMapXML->FormationRates(Rgas, Rsolid);
+}
+
 double OpenSMOKE_GasProp_HeatRelease (const double * R) {
   return kineticsMapXML->HeatRelease(R);
 }
 
+double OpenSMOKE_SoldProp_HeatRelease (const double * Rgas, const double * Rsolid) {
+  return kineticsSolidMapXML->HeatRelease(Rgas, Rsolid);
+}
+
 double OpenSMOKE_MW (const int i) {
   return thermodynamicsMapXML->MW(i);
+}
+
+double OpenSMOKE_MW_Solid (const int i) {
+  unsigned int ngs = thermodynamicsSolidMapXML->number_of_gas_species();
+  return thermodynamicsSolidMapXML->MW(i + ngs);
 }
 
 const char* OpenSMOKE_NamesOfSpecies (const int i) {
@@ -230,8 +295,18 @@ const char* OpenSMOKE_NamesOfLiquidSpecies (const int i) {
   return thermodynamicsLiquidMapXML->vector_names_liquid_species()[i].c_str();
 }
 
+const char* OpenSMOKE_NamesOfSolidSpecies (const int i) {
+    unsigned int ngs = thermodynamicsSolidMapXML->number_of_gas_species();
+  return thermodynamicsSolidMapXML->vector_names_solid_species()[i + ngs].c_str();
+}
+
 int OpenSMOKE_IndexOfSpecies (const char* s) {
   return thermodynamicsMapXML->IndexOfSpecies(s) - 1;
+}
+
+int OpenSMOKE_IndexOfSolidSpecies (const char* s) {
+  unsigned int ngs = thermodynamicsSolidMapXML->number_of_gas_species();
+  return thermodynamicsSolidMapXML->IndexOfSpecies(s) - 1 -ngs;
 }
 
 double OpenSMOKE_GasProp_DynamicViscosity (double* x) {
@@ -245,6 +320,12 @@ double OpenSMOKE_GasProp_ThermalConductivity (double* x) {
 double OpenSMOKE_GasProp_HeatCapacity (const double* x) {
   double MW = OpenSMOKE_MolecularWeight_From_MoleFractions (x);
   double Cp = thermodynamicsMapXML->cpMolar_Mixture_From_MoleFractions(x);
+  return Cp/MW;
+}
+
+double OpenSMOKE_SolProp_HeatCapacity (const double* x) {
+  double MW = OpenSMOKE_MolecularWeight_From_MoleFractions (x); //CHECK BACK HERE
+  double Cp = thermodynamicsSolidMapXML->cpMolar_Mixture_From_MoleFractions(x);
   return Cp/MW;
 }
 
