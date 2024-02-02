@@ -408,7 +408,8 @@ species in gas phase (to be computed)
 * *Rsolid*: formation rate [kmol/m3/s] of each chemical
 species in gas phase (to be computed)
 */
-void OpenSMOKE_SolProp_FormationRates (double * Rgas, double * Rsolid);
+void 
+  OpenSMOKE_SolProp_FormationRates (double * Rgas, double * Rsolid);
 
 /**
 ### *OpenSMOKE_SolProp_HeatRelease()*: Compute the heat released from the solid phase reactions
