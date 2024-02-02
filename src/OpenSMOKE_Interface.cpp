@@ -296,7 +296,7 @@ const char* OpenSMOKE_NamesOfLiquidSpecies (const int i) {
 }
 
 const char* OpenSMOKE_NamesOfSolidSpecies (const int i) {
-    unsigned int ngs = thermodynamicsSolidMapXML->number_of_gas_species();
+  unsigned int ngs = thermodynamicsSolidMapXML->number_of_gas_species();
   return thermodynamicsSolidMapXML->vector_names_solid_species()[i + ngs].c_str();
 }
 
@@ -324,7 +324,7 @@ double OpenSMOKE_GasProp_HeatCapacity (const double* x) {
 }
 
 double OpenSMOKE_SolProp_HeatCapacity (const double* x) {
-  double MW = OpenSMOKE_MolecularWeight_From_MoleFractions (x); //CHECK BACK HERE
+  double MW = thermodynamicsSolidMapXML->MolecularWeight_From_MoleFractions(x);
   double Cp = thermodynamicsSolidMapXML->cpMolar_Mixture_From_MoleFractions(x);
   return Cp/MW;
 }
