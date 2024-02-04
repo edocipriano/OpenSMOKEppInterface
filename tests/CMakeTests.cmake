@@ -15,5 +15,5 @@ add_test (NAME OpenSMOKE_ODESolver
             diff OpenSMOKE_ODESolver.log ../tests/OpenSMOKE_ODESolver.ref")
 
 add_test (NAME OpenSMOKE_PythonInterface
-          COMMAND zsh -c "python3 ../tests/OpenSMOKE_PythonInterface.py")
+          COMMAND bash -c "python3 ../tests/OpenSMOKE_PythonInterface.py")
 
