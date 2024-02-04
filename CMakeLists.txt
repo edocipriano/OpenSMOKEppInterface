@@ -16,23 +16,7 @@ set (CMAKE_COLOR_MAKEFILE ON)
 set (VERSION "0.2.0")
 set (INSTALL_BIN_DIR "${CMAKE_INSTALL_PREFIX}/bin" CACHE PATH "Installation directory for executables")
 set (CMAKE_OSX_DEPLOYMENT_TARGET 12.0)
-
-include(GNUInstallDirs)
-
-if (APPLE)
-  set(rbase "@loader_path")
-else ()
-  set(rbase "$ORIGIN")
-endif ()
-
-file(RELATIVE_PATH lib_dir
-     "${CMAKE_CURRENT_BINARY_DIR}/${CMAKE_INSTALL_BINDIR}"
-     "${CMAKE_CURRENT_BINARY_DIR}/${CMAKE_INSTALL_LIBDIR}")
-
-# Honor user overrides, whether at the command line or FetchContent
-set(CMAKE_INSTALL_RPATH "${rbase};${rbase}/${libdir}"
-    CACHE STRING "Install RPATH")
-
+set (CMAKE_CXX_STANDARD 11)
 
 if( NOT CMAKE_BUILD_TYPE)
   set (CMAKE_BUILD_TYPE Release)
@@ -40,8 +24,6 @@ endif()
 
 set (CMAKE_CXX_FLAGS_DEBUG "-O0 -g")
 set (CMAKE_CXX_FLAGS_RELEASE "-O2")
-
-message (STATUS "Compiling in mode: ${CMAKE_BUILD_TYPE}")
 
 #--------------------------------------------------------------------
 # Compulsory libraries
@@ -74,17 +56,6 @@ set(COMPULSORY_INCLUDE ${Boost_INCLUDE_DIRS}
                        ${OPENSMOKE_INCLUDE_DIR})
 
 #--------------------------------------------------------------------
-# Compilation flags and options
-#--------------------------------------------------------------------
-
-SET(CMAKE_EXE_LINKER_FLAGS "-Wl,--enable-new-dtags")
-
-add_compile_options(-std=c++11 -fPIC -m64 -w -shared)
-add_link_options(-std=c++11 -fPIC -m64 -w -shared -lm)
-#add_compile_options(-std=c++11 -fPIC -w)
-#add_link_options(-std=c++11 -w -shared -lm)
-
-#--------------------------------------------------------------------
 # Include flags
 #--------------------------------------------------------------------
 
@@ -103,4 +74,11 @@ LINK_LIBRARIES (${COMPULSORY_LIBRARIES})
 add_library (opensmoke SHARED
     src/OpenSMOKE_Interface.cpp
     src/OpenSMOKE_ODESystem_Interface.h)
+
+
+#--------------------------------------------------------------------
+# Testing
+#--------------------------------------------------------------------
+enable_testing()
+include (tests/CMakeTests.cmake)
 
