@@ -16,7 +16,7 @@ set (CMAKE_COLOR_MAKEFILE ON)
 set (VERSION "0.2.0")
 set (INSTALL_BIN_DIR "${CMAKE_INSTALL_PREFIX}/bin" CACHE PATH "Installation directory for executables")
 set (CMAKE_OSX_DEPLOYMENT_TARGET 12.0)
-set (CMAKE_CXX_STANDARD 11)
+set (CMAKE_CXX_STANDARD 14)
 
 if( NOT CMAKE_BUILD_TYPE)
   set (CMAKE_BUILD_TYPE Release)
@@ -79,6 +79,7 @@ add_library (opensmoke SHARED
 #--------------------------------------------------------------------
 # Testing
 #--------------------------------------------------------------------
+
 enable_testing()
 include (tests/CMakeTests.cmake)
 
