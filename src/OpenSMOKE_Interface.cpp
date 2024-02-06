@@ -10,6 +10,8 @@
 #include "maps/Maps_CHEMKIN"
 #include "maps/ThermodynamicsMap_Liquid_CHEMKIN.h"
 #include "maps/KineticsMap_Liquid_CHEMKIN.h"
+#include "maps/ThermodynamicsMap_Solid_CHEMKIN.h"
+#include "maps/KineticsMap_Solid_CHEMKIN.h"
 
 // OpenSMOKE++ Thermodynamics and liquid phase properties
 #include "thermodynamics/mixture/mixtureL/mixtureL.h"
@@ -44,7 +46,7 @@ OpenSMOKE::ThermodynamicsMap_Liquid_CHEMKIN* thermodynamicsLiquidMapXML;
 OpenSMOKE::KineticsMap_Liquid_CHEMKIN*       kineticsLiquidMapXML;
 
 OpenSMOKE::ThermodynamicsMap_Solid_CHEMKIN* thermodynamicsSolidMapXML;
-OpenSMOKE::KineticsMap_Solid_CHEMKIN* kineticsSolidMapXML;
+OpenSMOKE::KineticsMap_Solid_CHEMKIN*       kineticsSolidMapXML;
 
 speciesMap* species_map;
 mixtureL* liqmix;
@@ -162,8 +164,8 @@ void OpenSMOKE_ReadSolidKinetics (const char* kinfolder) {
     double tStart = OpenSMOKE::OpenSMOKEGetCpuTime();
 
     thermodynamicsSolidMapXML = new OpenSMOKE::ThermodynamicsMap_Solid_CHEMKIN(ptree);
-    kineticsSolidMapXML = new OpenSMOKE::KineticsMap_Solid_CHEMKIN(*thermodynamicsSolidMapXML, ptree, 1); 
-
+    kineticsSolidMapXML = new OpenSMOKE::KineticsMap_Solid_CHEMKIN(*thermodynamicsSolidMapXML, ptree, 1);
+     
     double tEnd = OpenSMOKE::OpenSMOKEGetCpuTime();
     std::cout<< "Time to read XML file: " << tEnd - tStart << endl; 
   }
@@ -254,7 +256,7 @@ void OpenSMOKE_GasProp_ReactionRates (const double * c) {
   kineticsMapXML->ReactionRates(c);
 }
 
-void OpenSMOKE_GasProp_FormationRates (double * R) {
+void OpenSMOKE_GasProp_ForctmationRates (double * R) {
   kineticsMapXML->FormationRates(R);
 }
 
@@ -296,8 +298,7 @@ const char* OpenSMOKE_NamesOfLiquidSpecies (const int i) {
 }
 
 const char* OpenSMOKE_NamesOfSolidSpecies (const int i) {
-  unsigned int ngs = thermodynamicsSolidMapXML->number_of_gas_species();
-  return thermodynamicsSolidMapXML->vector_names_solid_species()[i + ngs].c_str();
+  return thermodynamicsSolidMapXML->vector_names_solid_species()[i].c_str();
 }
 
 int OpenSMOKE_IndexOfSpecies (const char* s) {
@@ -306,7 +307,7 @@ int OpenSMOKE_IndexOfSpecies (const char* s) {
 
 int OpenSMOKE_IndexOfSolidSpecies (const char* s) {
   unsigned int ngs = thermodynamicsSolidMapXML->number_of_gas_species();
-  return thermodynamicsSolidMapXML->IndexOfSpecies(s) - 1 -ngs;
+  return thermodynamicsSolidMapXML->IndexOfSpecies(s) - 1;
 }
 
 double OpenSMOKE_GasProp_DynamicViscosity (double* x) {

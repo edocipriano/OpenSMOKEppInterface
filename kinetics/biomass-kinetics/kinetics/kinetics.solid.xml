@@ -3,8 +3,8 @@
 <Properties>
   <Author>undefined</Author>
   <Place>undefined</Place>
-  <Date>2024-02-06</Date>
-  <Time>09:39:21</Time>
+  <Date>2023-12-04</Date>
+  <Time>18:08:39</Time>
   <Comments>
 no comments
   </Comments>
@@ -252,9 +252,7 @@ CHARO 31
 <ReactionsNeedingConversion>
 0
 </ReactionsNeedingConversion>
-<TypeOfKinetics>
-chemkin_conventional
-</TypeOfKinetics>
+<TypeOfKinetics>chemkin_conventional</TypeOfKinetics>
 <ThermodynamicReversibleReactions>
 0
 </ThermodynamicReversibleReactions>
