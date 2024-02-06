@@ -1,0 +1,15 @@
+export CC=/software/chimica2/tools/gcc/gcc-9.2.0/bin/gcc
+export CXX=/software/chimica2/tools/gcc/gcc-9.2.0/bin/g++
+
+export OpenSMOKEpp_ROOT="/home/chimica2/ecipriano/OpenSMOKEpp/OpenSMOKEpp"
+
+export CONFIG_ROOT="/software/chimica2/libraries/libconfig/libconfig-1.5-gcc-9.2.0"
+export Eigen3_ROOT="/software/chimica2/libraries/eigen/eigen-3.4.0"
+export Boost_ROOT="/software/chimica2/libraries/boost/boost-1.81.0-gcc-9.2.0"
+
+# ---------------
+
+rm -rf build
+mkdir build
+cd build
+cmake ..
