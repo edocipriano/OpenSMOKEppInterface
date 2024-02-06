@@ -256,7 +256,7 @@ void OpenSMOKE_GasProp_ReactionRates (const double * c) {
   kineticsMapXML->ReactionRates(c);
 }
 
-void OpenSMOKE_GasProp_ForctmationRates (double * R) {
+void OpenSMOKE_GasProp_FormationRates (double * R) {
   kineticsMapXML->FormationRates(R);
 }
 
