@@ -276,7 +276,7 @@ double OpenSMOKE_GasProp_HeatRelease (const double * R) {
   return kineticsMapXML->HeatRelease(R);
 }
 
-double OpenSMOKE_SoldProp_HeatRelease (const double * Rgas, const double * Rsolid) {
+double OpenSMOKE_SolProp_HeatRelease (const double * Rgas, const double * Rsolid) {
   return kineticsSolidMapXML->HeatRelease(Rgas, Rsolid);
 }
 
