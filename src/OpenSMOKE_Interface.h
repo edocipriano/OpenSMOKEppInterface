@@ -418,7 +418,7 @@ void
 * *Rsolid*: formation rate [kmol/m3/s] of each chemical species in solid phase
 */
 double
-  OpenSMOKE_SolProp_HeatRelease (double * Rgas, double * Rsolid);
+  OpenSMOKE_SolProp_HeatRelease (const double * Rgas, const double * Rsolid);
 
 /**
 ## Liquid Phase Thermodynamics
