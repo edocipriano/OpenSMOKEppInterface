@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="utf-8"?>
+<opensmoke version="0.1a">
+<Properties>
+  <Author>CRECK Modeling Group</Author>
+  <Place>Politecnico di Milano (Italy)</Place>
+  <Date>2024-02-13</Date>
+  <Time>17:55:28</Time>
+  <Comments>
+This kinetic mechanism can be downloaded at: www.creckmodeling.chem.polimi.it
+  </Comments>
+</Properties>
+<NumberOfElements>
+4
+</NumberOfElements>
+<NamesOfElements>
+C H O N 
+</NamesOfElements>
+<AtomicComposition>
+2.0000000000e+00 4.0000000000e+00 2.0000000000e+00 0. 
+0. 0. 0. 2.0000000000e+00 
+2.0000000000e+00 4.0000000000e+00 2.0000000000e+00 0. 
+</AtomicComposition>
+<NumberOfSpecies>
+3
+</NumberOfSpecies>
+<NamesOfSpecies>
+CH3CO2H N2 CH3CO2H(L) 
+</NamesOfSpecies>
+<Thermodynamics type="NASA">
+<NASA-coefficients>
+7.670846009999999993e+00 1.351526020000000036e-02 -5.258743330000000418e-06 8.931844789999999668e-10 -5.531805429999999809e-14 -5.575609700000000157e+04 -1.546773149999999930e+01 2.789502010000000087e+00 9.999417190000000136e-03 3.425722449999999824e-05 -5.090313290000000028e-08 2.062221850000000009e-11 -5.347524880000000121e+04 1.410531229999999958e+01 3.000000000000000000e+02 4.000000000000000000e+03 1.000000000000000000e+03 6.005199861526489258e+01
+2.938029699999999966e+00 1.418380300000000004e-03 -5.032810449999999699e-07 8.075554640000000191e-11 -4.760642750000000280e-15 -9.171809899999999516e+02 5.955219849999999759e+00 3.536035210000000095e+00 -1.582709440000000100e-04 -4.269842509999999911e-07 2.375425899999999867e-09 -1.397082059999999998e-12 -1.047496450000000095e+03 2.946037239999999890e+00 2.000000000000000000e+02 6.000000000000000000e+03 1.000000000000000000e+03 2.801399993896480112e+01
+7.670846009999999993e+00 1.351526020000000036e-02 -5.258743330000000418e-06 8.931844789999999668e-10 -5.531805429999999809e-14 -5.575609700000000157e+04 -1.546773149999999930e+01 2.789502010000000087e+00 9.999417190000000136e-03 3.425722449999999824e-05 -5.090313290000000028e-08 2.062221850000000009e-11 -5.347524880000000121e+04 1.410531229999999958e+01 3.000000000000000000e+02 4.000000000000000000e+03 1.000000000000000000e+03 6.005199861526489258e+01
+</NASA-coefficients>
+</Thermodynamics>
+<Transport type="none">
+</Transport>
+<NumberOfMaterials>
+1
+</NumberOfMaterials>
+<NumberOfLiquidSpecies>
+1
+</NumberOfLiquidSpecies>
+<LiquidSpecies>
+CH3CO2H(L)
+</LiquidSpecies>
+<MaterialDescription index="1" name="LIQUIDMIX">
+1
+CH3CO2H(L) 1
+</MaterialDescription>
+<Kinetics type="OpenSMOKE" version="01-02-2014">
+<MaterialKinetics index="1" name="LIQUIDMIX">
+<NumberOfSpecies>
+3
+</NumberOfSpecies>
+<NumberOfReactions>
+0
+</NumberOfReactions>
+<Irreversible>
+0
+</Irreversible>
+<Reversible>
+0
+</Reversible>
+<Reversible-Thermodynamics>
+0
+</Reversible-Thermodynamics>
+<Reversible-Explicit>
+0
+</Reversible-Explicit>
+<ThreeBody>
+0
+</ThreeBody>
+<FallOff>
+0
+<Lindemann>
+0
+</Lindemann>
+<Troe>
+0
+</Troe>
+<SRI>
+0
+</SRI>
+</FallOff>
+<CABR>
+0
+<Lindemann>
+0
+</Lindemann>
+<Troe>
+0
+</Troe>
+<SRI>
+0
+</SRI>
+</CABR>
+<Chebyshev>
+0
+</Chebyshev>
+<PressureLog>
+0
+</PressureLog>
+<ExtendedPressureLog>
+0
+</ExtendedPressureLog>
+<ExtendedFallOff>
+0
+</ExtendedFallOff>
+<FIT1>
+0
+</FIT1>
+<JanevLanger>
+0
+</JanevLanger>
+<LandauTeller>
+0
+</LandauTeller>
+<UsrProg>
+0
+</UsrProg>
+<UsrProg-Labels>
+0
+</UsrProg-Labels>
+<ReactionsNeedingConversion>
+0
+</ReactionsNeedingConversion>
+<TypeOfKinetics>
+chemkin_conventional
+</TypeOfKinetics>
+<ThermodynamicReversibleReactions>
+0
+</ThermodynamicReversibleReactions>
+<KineticParameters>
+<Direct>
+<lnA>
+0
+
+</lnA>
+<Beta>
+0
+
+</Beta>
+<E_over_R>
+0
+
+</E_over_R>
+<ForwardKineticOrder>
+0
+
+</ForwardKineticOrder>
+</Direct>
+</KineticParameters>
+<Stoichiometry type="OpenSMOKE" version="01-02-2014">
+3
+0 0 0 
+3
+0 0 0 
+3
+0 0 0 
+3
+0 0 0 
+3
+0 0 0 
+3
+0 0 0 
+3
+0 0 0 
+3
+0 0 0 
+3
+0 0 0 
+3
+0 0 0 
+3
+0 0 0 
+3
+0 0 0 
+3
+0 0 0 
+3
+0 0 0 
+3
+0 0 0 
+0
+
+0
+
+0
+
+0
+
+0
+
+0
+
+0
+
+0
+
+0
+
+0
+
+0
+
+0
+
+0
+
+0
+
+0
+
+0
+
+0
+
+0
+
+0
+
+0
+0
+</Stoichiometry>
+<GlobalReactions type="none">
+</GlobalReactions>
+</MaterialKinetics>
+</Kinetics>
+</opensmoke>
