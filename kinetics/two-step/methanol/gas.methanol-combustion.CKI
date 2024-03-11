@@ -1,0 +1,30 @@
+ELEMENTS
+N
+O
+H
+C
+END
+
+SPECIES
+CH3OH
+O2
+CO2
+CO
+H2O
+N2
+END
+
+REACTIONS
+CH3OH + O2 => CO + 2H2O           3.7000000e12       0.00      30000.00
+FORD /CH3OH 0.25/
+FORD /O2 1.5/
+
+CO + 0.5O2 => CO2                 398107170553496.94 0.00      40000.00
+FORD /CO 1/
+FORD /H2O 0.5/
+FORD /O2 0.25/
+
+CO2 => CO + 0.5O2                 5.0000000e8        0.00      40000.00
+FORD /CO2 1/
+END
+
