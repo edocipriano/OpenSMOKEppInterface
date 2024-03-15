@@ -71,6 +71,14 @@ void
   OpenSMOKE_ReadLiquidKinetics (const char* kinfolder);
 
 /**
+### *OpenSMOKE_ReadSolidKinetics()*: Read solid phase kinetics
+
+* *kinfolder*: path to the kinetics folder containing kinetics.solid.xml
+*/
+void
+  OpenSMOKE_ReadSolidKinetics (const char* kinfolder);
+
+/**
 ### *OpenSMOKE_ReadLiquidProperties()*: Read liquid properties folder
 
 * *liqpropfolder*: path to LiquidProperties
@@ -91,11 +99,22 @@ int
   OpenSMOKE_NumberOfLiquidSpecies (void);
 
 /**
+### *OpenSMOKE_NumberOfSolidSpecies()*: Number of species in solid phase
+*/
+int
+  OpenSMOKE_NumberOfSolidSpecies (void);
+
+/**
 ### *OpenSMOKE_NumberOfReactions()*: Number of reactions in gas phase
 */
 int
   OpenSMOKE_NumberOfReactions (void);
 
+/**
+### *OpenSMOKE_NumberOfSolidReactions()*: Number of reactions in gas solid
+*/
+int
+  OpenSMOKE_NumberOfSolidReactions (void);
 /**
 ### *OpenSMOKE_Printpi()*: Print pi constant (debug)
 */
@@ -119,12 +138,28 @@ const char*
   OpenSMOKE_NamesOfLiquidSpecies (const int i);
 
 /**
+### *OpenSMOKE_NamesOfSolidSpecies()*: Names of the solid phase species
+
+* *i*: index of the species based on the number of ONLY solid species 
+*/
+const char*
+  OpenSMOKE_NamesOfSolidSpecies (const int i);
+
+/**
 ### *OpenSMOKE_IndexOfSpecies()*: Index of the specific species in gas phase
 
 * *s*: name of the species under investigation
 */
 int
   OpenSMOKE_IndexOfSpecies (const char* s);
+
+/**
+### *OpenSMOKE_IndexOfSolidSpecies()*: Index of the specific species in solid phase
+
+* *s*: name of the species under investigation
+*/
+int
+  OpenSMOKE_IndexOfSolidSpecies (const char* s);
 
 /**
 # Gas Phase Thermodynamics
@@ -173,6 +208,36 @@ void
   OpenSMOKE_LiqProp_SetTemperature (const double T);
 
 /**
+# Solid Phase Thermodynamics
+
+Functions for the calculation of thermodynamic properties in solid phase.
+*/
+
+/**
+### *OpenSMOKE_MW()*: Molecular weights of the solid phase species
+
+* *i*: index of the species
+*/
+double
+  OpenSMOKE_MW_Solid (const int i);
+
+/**
+### *OpenSMOKE_SolProp_SetPressure()*: Set Pressure in gas solid
+
+* *P*: pressure in solid phase
+*/
+void
+  OpenSMOKE_SolProp_SetPressure (const double P);
+
+/**
+### *OpenSMOKE_SolProp_SetTemperature()*: Set Temperature in solid phase
+
+* *T*: temperature in solid phase
+*/
+void
+  OpenSMOKE_SolProp_SetTemperature (const double T);
+
+/**
 ### *OpenSMOKE_GasProp_DynamicViscosity()*: Density of the gas phase mixture
 
 * *x*: mole fractions in gas phase
@@ -214,6 +279,14 @@ double
 */
 double
   OpenSMOKE_GasProp_HeatCapacity (const double* x);
+
+/**
+### *OpenSMOKE_SolProp_HeatCapacity()*: Specific heat capacity of the solid phase mixture
+
+* *x*: mole fractions in solid phase
+*/
+double
+  OpenSMOKE_SolProp_HeatCapacity (const double* x);
 
 /**
 ### *OpenSMOKE_GasProp_SpeciesHeatCapacity()*: Specific heat capacity of species i in the gas phase
@@ -304,6 +377,48 @@ void OpenSMOKE_GasProp_FormationRates (double * R);
 */
 double
   OpenSMOKE_GasProp_HeatRelease (const double * R);
+
+/**
+## Solid Phase Kinetics
+
+Functions for the calculation of kinetic properties in solid phase.
+*/
+
+/**
+### *OpenSMOKE_SolProp_KineticConstants()*: Compute kinetic constants in solid phase
+*/
+void
+  OpenSMOKE_SolProp_KineticConstants (void);
+
+/**
+### *OpenSMOKE_SolProp_ReactionRates()*: Compute the reaction rates in solid phase
+
+* *cgas*: concentration of each chemical species in gas phase
+* *csold*: concentration of each chemical species in solid phase
+*/
+
+void
+  OpenSMOKE_SolProp_ReactionRates (const double * cgas, const double * csolid);
+
+/**
+### *OpenSMOKE_SolidProp_FormationRates()*: Return the formation rates in solid phase
+
+* *Rgas*: formation rate [kmol/m3/s] of each chemical
+species in gas phase (to be computed)
+* *Rsolid*: formation rate [kmol/m3/s] of each chemical
+species in gas phase (to be computed)
+*/
+void 
+  OpenSMOKE_SolProp_FormationRates (double * Rgas, double * Rsolid);
+
+/**
+### *OpenSMOKE_SolProp_HeatRelease()*: Compute the heat released from the solid phase reactions
+
+* *Rgas*: formation rate [kmol/m3/s] of each chemical species in gas phase
+* *Rsolid*: formation rate [kmol/m3/s] of each chemical species in solid phase
+*/
+double
+  OpenSMOKE_SolProp_HeatRelease (const double * Rgas, const double * Rsolid);
 
 /**
 ## Liquid Phase Thermodynamics
