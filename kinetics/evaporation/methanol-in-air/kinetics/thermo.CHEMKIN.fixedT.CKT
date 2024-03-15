@@ -4,7 +4,7 @@
 ! continuity of each function at the intermediate temperature, but also the  continuity
 ! of the derivatives, from the 1st to the 3rd order
 ! The intermediate temperatures are the same for all the species.
-! Last update: 12/3/2023
+! Last update: 3/15/2024
 
 THERMO ALL
 270.   1000.   3500. 
