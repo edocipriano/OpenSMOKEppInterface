@@ -1,7 +1,7 @@
 #include <iostream>
 #include "OpenSMOKE_Interface.h"
 
-#define kinfolder "../kinetics/biomass-kinetics/kinetics"
+#define kinfolder "../kinetics/biomass/solid-only-2003/kinetics"
 
 int main () {
   OpenSMOKE_Init();

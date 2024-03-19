@@ -20,5 +20,5 @@ run_preprocessor_in_folders "two-step"
 run_preprocessor_in_folders "materials"
 run_preprocessor_in_folders "skeletal"
 run_preprocessor_in_folders "evaporation"
-
+run_preprocessor_in_folders "biomass"
 
