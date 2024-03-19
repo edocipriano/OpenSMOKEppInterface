@@ -307,7 +307,7 @@ int OpenSMOKE_IndexOfSpecies (const char* s) {
 
 int OpenSMOKE_IndexOfSolidSpecies (const char* s) {
   unsigned int ngs = thermodynamicsSolidMapXML->number_of_gas_species();
-  return thermodynamicsSolidMapXML->IndexOfSpecies(s) - 1;
+  return thermodynamicsSolidMapXML->IndexOfSpecies(s) - 1 - ngs;
 }
 
 double OpenSMOKE_GasProp_DynamicViscosity (double* x) {
