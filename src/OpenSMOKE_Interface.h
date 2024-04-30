@@ -520,6 +520,16 @@ double
   OpenSMOKE_LiqProp_VaporizationEnthalpy (const char* s, double T);
 
 /**
+### *OpenSMOKE_LiqProp_Sigma()*: Surface tension of a pure liquid species
+
+* *s*: name of the chemical species
+* *T*: temperature in liquid phase
+* *P*: pressure in liquid phase
+*/
+double
+  OpenSMOKE_LiqProp_Sigma (const char* s, double T);
+
+/**
 ### *OpenSMOKE_LiqProp_Dmix_PerkinsGeankopolis()* Mixture diffusion coefficients (Perkins Geankopolis model)
 
 * *T*: temperature in liquid phase

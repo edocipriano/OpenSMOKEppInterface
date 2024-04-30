@@ -428,6 +428,10 @@ double OpenSMOKE_LiqProp_VaporizationEnthalpy (const char* s, double T) {
   return species_map->deltaHv(s, T);
 }
 
+double OpenSMOKE_LiqProp_Sigma (const char* s, double T) {
+  return species_map->sigma(s, T);
+}
+
 double OpenSMOKE_LiqProp_Dmix_PerkinsGeankopolis (double T, double P, const double* x, const int i) {
   if (OpenSMOKE_NumberOfLiquidSpecies() == 1) {
     return 0;
