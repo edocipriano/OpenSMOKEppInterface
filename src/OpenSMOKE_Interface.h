@@ -379,6 +379,14 @@ double
   OpenSMOKE_GasProp_HeatRelease (const double * R);
 
 /**
+### *OpenSMOKE_GasProp_kPlanckMix()*: Planck mean absorption coefficient of the mixture
+
+* *x*: mole fractions in gas phase
+*/
+double
+  OpenSMOKE_GasProp_kPlanckMix (const double* x);
+
+/**
 ## Solid Phase Kinetics
 
 Functions for the calculation of kinetic properties in solid phase.

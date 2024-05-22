@@ -276,6 +276,10 @@ double OpenSMOKE_GasProp_HeatRelease (const double * R) {
   return kineticsMapXML->HeatRelease(R);
 }
 
+double OpenSMOKE_GasProp_kPlanckMix (const double * x) {
+  return transportMapXML->kPlanckMix (x);
+}
+
 double OpenSMOKE_SolProp_HeatRelease (const double * Rgas, const double * Rsolid) {
   return kineticsSolidMapXML->HeatRelease(Rgas, Rsolid);
 }
