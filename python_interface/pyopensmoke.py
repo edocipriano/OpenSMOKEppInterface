@@ -38,6 +38,10 @@ OpenSMOKE_ReadLiquidKinetics = OpenSMOKE.OpenSMOKE_ReadLiquidKinetics
 OpenSMOKE_ReadLiquidKinetics.argtypes = [c_char_p]
 OpenSMOKE_ReadLiquidKinetics.restype = None
 
+OpenSMOKE_ReadSolidKinetics = OpenSMOKE.OpenSMOKE_ReadSolidKinetics
+OpenSMOKE_ReadSolidKinetics.argtypes = [c_char_p]
+OpenSMOKE_ReadSolidKinetics.restype = None
+
 OpenSMOKE_ReadLiquidProperties = OpenSMOKE.OpenSMOKE_ReadLiquidProperties
 OpenSMOKE_ReadLiquidProperties.argtypes = [c_char_p]
 OpenSMOKE_ReadLiquidProperties.restype = None
@@ -50,9 +54,17 @@ OpenSMOKE_NumberOfLiquidSpecies = OpenSMOKE.OpenSMOKE_NumberOfLiquidSpecies
 OpenSMOKE_NumberOfLiquidSpecies.argtypes = None
 OpenSMOKE_NumberOfLiquidSpecies.restype = c_int
 
+OpenSMOKE_NumberOfSolidSpecies = OpenSMOKE.OpenSMOKE_NumberOfSolidSpecies
+OpenSMOKE_NumberOfSolidSpecies.argtypes = None
+OpenSMOKE_NumberOfSolidSpecies.restype = c_int
+
 OpenSMOKE_NumberOfReactions = OpenSMOKE.OpenSMOKE_NumberOfReactions
 OpenSMOKE_NumberOfReactions.argtypes = None
 OpenSMOKE_NumberOfReactions.restype = c_int
+
+OpenSMOKE_NumberOfSolidReactions = OpenSMOKE.OpenSMOKE_NumberOfSolidReactions
+OpenSMOKE_NumberOfSolidReactions.argtypes = None
+OpenSMOKE_NumberOfSolidReactions.restype = c_int
 
 OpenSMOKE_Printpi = OpenSMOKE.OpenSMOKE_Printpi
 OpenSMOKE_Printpi.argtypes = None
@@ -66,9 +78,17 @@ OpenSMOKE_NamesOfLiquidSpecies = OpenSMOKE.OpenSMOKE_NamesOfLiquidSpecies
 OpenSMOKE_NamesOfLiquidSpecies.argtypes = [c_int]
 OpenSMOKE_NamesOfLiquidSpecies.restype = c_char_p
 
+OpenSMOKE_NamesOfSolidSpecies = OpenSMOKE.OpenSMOKE_NamesOfSolidSpecies
+OpenSMOKE_NamesOfSolidSpecies.argtypes = [c_int]
+OpenSMOKE_NamesOfSolidSpecies.restype = c_char_p
+
 OpenSMOKE_IndexOfSpecies = OpenSMOKE.OpenSMOKE_IndexOfSpecies
 OpenSMOKE_IndexOfSpecies.argtypes = [c_char_p]
 OpenSMOKE_IndexOfSpecies.restype = c_int
+
+OpenSMOKE_IndexOfSolidSpecies = OpenSMOKE.OpenSMOKE_IndexOfSolidSpecies
+OpenSMOKE_IndexOfSolidSpecies.argtypes = [c_char_p]
+OpenSMOKE_IndexOfSolidSpecies.restype = c_int
 
 OpenSMOKE_MW = OpenSMOKE.OpenSMOKE_MW
 OpenSMOKE_MW.argtypes = [c_int]
@@ -89,6 +109,10 @@ OpenSMOKE_LiqProp_SetPressure.restype = None
 OpenSMOKE_LiqProp_SetTemperature = OpenSMOKE.OpenSMOKE_LiqProp_SetTemperature
 OpenSMOKE_LiqProp_SetTemperature.argtypes = [c_double]
 OpenSMOKE_LiqProp_SetTemperature.restype = None
+
+OpenSMOKE_MW_Solid = OpenSMOKE.OpenSMOKE_MW_Solid
+OpenSMOKE_MW_Solid.argtypes = [c_int]
+OpenSMOKE_MW_Solid.restype = c_double
 
 OpenSMOKE_GasProp_DynamicViscosity = OpenSMOKE.OpenSMOKE_GasProp_DynamicViscosity
 OpenSMOKE_GasProp_DynamicViscosity.argtypes = [POINTER(c_double)]
