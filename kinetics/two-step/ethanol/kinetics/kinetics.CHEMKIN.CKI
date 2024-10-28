@@ -1,0 +1,28 @@
+ELEMENTS
+C
+H
+O
+N
+END
+
+SPECIES
+C2H5OH                        O2                            CO2                           
+CO                            H2O                           N2                            
+END
+
+REACTIONS
+
+C2H5OH+2O2=>2CO+3H2O                                    1.8000e+12    0.000     30000.00
+ FORD /  C2H5OH  0.1500/
+ FORD /  O2  1.6000/
+
+0.5O2+CO=>CO2                                           3.9811e+14    0.000     40000.00
+ FORD /  O2  0.2500/
+ FORD /  CO  1.0000/
+ FORD /  H2O  0.5000/
+
+CO2=>0.5O2+CO                                           5.0000e+08    0.000     40000.00
+ FORD /  CO2  1.0000/
+
+END
+
