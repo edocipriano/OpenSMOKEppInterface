@@ -1,4 +1,4 @@
-
+// OpenSMOKE Interface
 #include "OpenSMOKE_Interface.h"
 #include "OpenSMOKE_ODESystem_Interface.h"
 
@@ -21,23 +21,10 @@
 #include "dictionary/OpenSMOKE_Dictionary"
 
 // ODE solvers
-//#include "math/native-ode-solvers/MultiValueSolver"
-//#include "math/native-ode-solvers/OpenSMOKE_OdeSystemObject.h"
+#include "math/native-ode-solvers/MultiValueSolver"
 #include "math/external-ode-solvers/ODE_Parameters.h"
 
-// Utilities
-#include "idealreactors/utilities/Utilities"
-#include "utilities/ropa/OnTheFlyROPA.h"
-#include "utilities/cema/OnTheFlyCEMA.h"
-#include "utilities/ontheflypostprocessing/OnTheFlyPostProcessing.h"
-#include "utilities/kineticsmodifier/KineticsModifier.h"
-
-// PolimiSoot Analyzer
-#include "utilities/soot/polimi/OpenSMOKE_PolimiSoot_Analyzer.h"
-
-// Batch reactor
-#include "idealreactors/batch/BatchReactor"
-
+// Global pointers
 OpenSMOKE::ThermodynamicsMap_CHEMKIN*           thermodynamicsMapXML;
 OpenSMOKE::KineticsMap_CHEMKIN*                 kineticsMapXML;
 OpenSMOKE::TransportPropertiesMap_CHEMKIN*      transportMapXML;

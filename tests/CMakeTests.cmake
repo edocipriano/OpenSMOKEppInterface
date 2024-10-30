@@ -25,3 +25,6 @@ add_test (NAME OpenSMOKE_SolidKinetics
 add_test (NAME OpenSMOKE_PythonInterface
           COMMAND bash -c "python3 ../tests/OpenSMOKE_PythonInterface.py")
 
+add_test (NAME OpenSMOKE_PythonInterfaceSolid
+          COMMAND bash -c "python3 ../tests/OpenSMOKE_PythonInterfaceSolid.py")
+
