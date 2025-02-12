@@ -1,7 +1,7 @@
 #include <iostream>
 #include "OpenSMOKE_Interface.h"
 
-#define kinfolder "../kinetics/biomass/solid-only-2003/kinetics"
+#define kinfolder "../kinetics/biomass/Solid-only-2003/kinetics"
 
 int main () {
   OpenSMOKE_Init();
@@ -25,6 +25,16 @@ int main () {
       << "Index[" << OpenSMOKE_NamesOfSolidSpecies (jj) << "] = " <<
       OpenSMOKE_IndexOfSolidSpecies (OpenSMOKE_NamesOfSolidSpecies (jj)) << std::endl;
   }
+
+  double x [OpenSMOKE_NumberOfSolidSpecies()];
+  
+  x[OpenSMOKE_IndexOfSolidSpecies ("CELL")] = 0.5;
+  x[OpenSMOKE_IndexOfSolidSpecies ("LIGO")] = 0.5;
+
+  OpenSMOKE_SolProp_SetTemperature(300.);
+  OpenSMOKE_SolProp_SetPressure(101325.);
+  double cp = OpenSMOKE_SolProp_HeatCapacity (x);
+  std::cerr<< "Heat capacity = " << cp << std::endl;
 
   OpenSMOKE_Clean();
   return 0;
