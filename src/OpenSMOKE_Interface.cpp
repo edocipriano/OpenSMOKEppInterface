@@ -502,6 +502,10 @@ void OpenSMOKE_MoleFractions_From_MassFractions (double* x, double* MW, const do
    thermodynamicsMapXML->MoleFractions_From_MassFractions (x, *MW ,y);
 }
 
+void OpenSMOKE_SolidMoleFractions_From_SolidMassFractions (double* x, double* MW, const double* y) {
+  thermodynamicsSolidMapXML->SolidMoleFractions_From_SolidMassFractions (x, *MW, y);
+}
+
 void OpenSMOKE_LiquidMassFractions_From_LiquidMoleFractions (double* y, double* MW, const double* x) {
   thermodynamicsLiquidMapXML->LiquidMassFractions_From_LiquidMoleFractions (y, *MW, x);
 }
