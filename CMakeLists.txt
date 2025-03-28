@@ -56,11 +56,37 @@ set(COMPULSORY_INCLUDE ${Boost_INCLUDE_DIRS}
                        ${OPENSMOKE_INCLUDE_DIR})
 
 #--------------------------------------------------------------------
+# Add non-compulsory libraries
+#--------------------------------------------------------------------
+
+option (OPENSMOKE_USE_OPENBLAS "Activate OpenBLAS support for OpenSMOKEpp" FALSE)
+if (OPENSMOKE_USE_OPENBLAS)
+  find_package (OpenBLAS COMPONENTS openblas lapack)
+  message (STATUS "OpenBLAS_INCLUDE_DIRS = ${OpenBLAS_INCLUDE_DIR}")
+  message (STATUS "BLAS_LIBRARIES        = ${OpenBLAS_LIB}")
+  list (APPEND COMPULSORY_INCLUDE ${OpenBLAS_INCLUDE_DIR})
+  list (APPEND COMPULSORY_LIBRARIES ${OpenBLAS_LIB})
+  add_compile_definitions (OPENSMOKE_USE_OPENBLAS=1)
+endif()
+
+option (OPENSMOKE_USE_MKL "Activate MKL/BLAS support for OpenSMOKEpp" FALSE)
+if (OPENSMOKE_USE_MKL)
+  set (BLA_VENDOR Intel10_64lp)
+  find_package (BLAS)
+  message (STATUS "MKL_DIR       = ${BLAS_DIR}")
+  message (STATUS "MKL_LIBRARIES = ${BLAS_LIBRARIES}")
+  list (APPEND COMPULSORY_INCLUDE ${BLAS_DIR})
+  list (APPEND COMPULSORY_LIBRARIES ${BLAS_LIBRARIES})
+  add_compile_definitions (OPENSMOKE_USE_MKL=1)
+endif()
+
+#--------------------------------------------------------------------
 # Include flags
 #--------------------------------------------------------------------
 
 INCLUDE_DIRECTORIES (${PROJECT_SOURCE_DIR}/src
                      ${COMPULSORY_INCLUDE})
+
 #--------------------------------------------------------------------
 # Library flags
 #--------------------------------------------------------------------
