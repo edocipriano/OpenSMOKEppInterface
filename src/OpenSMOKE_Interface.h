@@ -428,6 +428,16 @@ void
 double
   OpenSMOKE_SolProp_HeatRelease (const double * Rgas, const double * Rsolid);
 
+  /**
+### *OpenSMOKE_SolidMoleFractions_From_SolidMassFractions()*: Mole fractions and mixture molecular weight from mass fractions in solid phase
+
+* *x*: mole fractions in solid phase (to be computed)
+* *MW*: solid phase mixture molecular weight (to be computed)
+* *y*: mass fractions in solid phase
+*/
+void
+  OpenSMOKE_SolidMoleFractions_From_SolidMassFractions (double* x, double* MW, const double* y);
+
 /**
 ## Liquid Phase Thermodynamics
 
