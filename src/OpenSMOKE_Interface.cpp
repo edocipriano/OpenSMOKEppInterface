@@ -333,11 +333,11 @@ void OpenSMOKE_GasProp_HeatCapacity_PureSpecies (double * cp) {
     cp[i] /= OpenSMOKE_MW (i);
 }
 
-double OpenSMOKE_GasProp_Dmix (const double* x, const int i) {
+void OpenSMOKE_GasProp_Dmix (const double* x, double* Diffs) {
   const double baseline_diffusion = 1e-10;
-  double Diffs[thermodynamicsMapXML->NumberOfSpecies()];
   transportMapXML->MassDiffusionCoefficients (Diffs, x, transportMapXML->is_species_bundling());
-  return Diffs[i] + baseline_diffusion;
+  for (unsigned int i=0; i<OpenSMOKE_NumberOfSpecies(); i++)
+    Diffs[i] += baseline_diffusion;
 }
 
 double OpenSMOKE_GasProp_Concentrations (double T, double P) {
