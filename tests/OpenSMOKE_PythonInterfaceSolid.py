@@ -2,7 +2,7 @@ import os, sys
 sys.path.append(os.environ.get('OPENSMOKE_INTERFACE')+'/python_interface')
 from pyopensmoke import *
 
-kinfolder = "../kinetics/biomass/solid-only-2003/kinetics"
+kinfolder = "../kinetics/biomass/Solid-only-2003/kinetics"
 
 OpenSMOKE_Init()
 OpenSMOKE_ReadSolidKinetics (kinfolder.encode('utf-8'))

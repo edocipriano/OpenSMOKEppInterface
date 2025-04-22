@@ -316,9 +316,15 @@ double OpenSMOKE_GasProp_HeatCapacity (const double* x) {
 }
 
 double OpenSMOKE_SolProp_HeatCapacity (const double* x) {
-  double MW = thermodynamicsSolidMapXML->MolecularWeight_From_MoleFractions(x);
-  double Cp = thermodynamicsSolidMapXML->cpMolar_Mixture_From_MoleFractions(x);
-  return Cp/MW;
+
+  double Cp[thermodynamicsSolidMapXML->number_of_solid_species()];
+  thermodynamicsSolidMapXML->cpMolar_SolidSpecies(Cp);
+
+  double CpMix = 0.;
+  for (unsigned int i=0; i<thermodynamicsSolidMapXML->number_of_solid_species(); i++)
+    CpMix += x[i]*Cp[i]/OpenSMOKE_MW_Solid(i);
+
+  return CpMix;
 }
 
 void OpenSMOKE_GasProp_HeatCapacity_PureSpecies (double * cp) {
@@ -494,6 +500,10 @@ void OpenSMOKE_MassFractions_From_MoleFractions (double* y, double* MW, const do
 
 void OpenSMOKE_MoleFractions_From_MassFractions (double* x, double* MW, const double* y) {
    thermodynamicsMapXML->MoleFractions_From_MassFractions (x, *MW ,y);
+}
+
+void OpenSMOKE_SolidMoleFractions_From_SolidMassFractions (double* x, double* MW, const double* y) {
+  thermodynamicsSolidMapXML->SolidMoleFractions_From_SolidMassFractions (x, *MW, y);
 }
 
 void OpenSMOKE_LiquidMassFractions_From_LiquidMoleFractions (double* y, double* MW, const double* x) {
