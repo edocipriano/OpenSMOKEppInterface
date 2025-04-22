@@ -316,9 +316,8 @@ double OpenSMOKE_GasProp_HeatCapacity (const double* x) {
 }
 
 double OpenSMOKE_SolProp_HeatCapacity (const double* x) {
-
-  double Cp[thermodynamicsSolidMapXML->number_of_solid_species()];
-  thermodynamicsSolidMapXML->cpMolar_SolidSpecies(Cp);
+  std::vector<double> Cp (thermodynamicsSolidMapXML->number_of_solid_species());
+  thermodynamicsSolidMapXML->cpMolar_SolidSpecies(Cp.data());
 
   double CpMix = 0.;
   for (unsigned int i=0; i<thermodynamicsSolidMapXML->number_of_solid_species(); i++)
