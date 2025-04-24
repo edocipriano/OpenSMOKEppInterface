@@ -8,16 +8,16 @@ The library relies on the following external dependencies:
 * [**Eigen**](https://eigen.tuxfamily.org/index.php?title=Main_Page)
 * [**Config++**](https://hyperrealm.github.io/libconfig/)
 
-where OpenSMOKE++ and Eigen are headers-only, while the other libraries must be compiled or installed using your favorite package manager.
+OpenSMOKE++ and Eigen are headers-only, while the others must be compiled or installed using your preferred package manager.
 
 ### 🚀 BLAS Support for performance
-Additionally, for speed-up of mathematical operations, one of the following libraries must be installed:
+To speed up mathematical operations, one of the following libraries must also be installed:
 * [**OpenBLAS**](http://www.openmathlib.org/OpenBLAS/)
 * [**Intel MKL**](https://www.intel.com/content/www/us/en/developer/tools/oneapi/onemkl.html)
 
 ## ⚙️ Environment Setup
-Create the following environment variables which store the path to the OpenSMOKE++ library, and to this OpenSMOKEppInterface repository.
-As an example:
+Create the following environment variables to store the paths to the OpenSMOKE++ library and the OpenSMOKEppInterface repository.
+For example:
 ```
 export OPENSMOKE_LATEST=${HOME}/OpenSMOKE/OpenSMOKEppMinimal4Basilisk/source
 ```
@@ -26,8 +26,8 @@ export OPENSMOKE_INTERFACE=${HOME}/OpenSMOKE/OpenSMOKEppInterface
 ```
 
 ## 🛠️ Installation
-The default tool for installing this library is [cmake](https://cmake.org), which attempts to automatically find the dependency libraries automatically, if they are installed in standard paths.
-Assuming the use of OpenBLAS support, the compilation is carried out with the following commands.
+The default installation tool for this library is [CMake](https://cmake.org), which attempts to automatically find the dependency libraries if they are installed in standard locations.
+Assuming you are using OpenBLAS, compile the project with the following commands:
 ```
 mkdir build
 cd build
@@ -35,7 +35,7 @@ cmake -DOPENSMOKE_USE_OPENBLAS=1 ..
 make
 ```
 
-If any error occurs during compilation, you need to make sure that cmake prompts the correct path. An example of the cmake output is:
+If any errors occur during compilation, make sure that CMake is detecting the correct paths. Below is an example of the CMake output
 ```
 ...
 -- Found Boost: /opt/homebrew/lib/cmake/Boost-1.85.0/BoostConfig.cmake (found version "1.85.0") found components: date_time filesystem program_options system regex timer chrono 
@@ -51,7 +51,7 @@ If any error occurs during compilation, you need to make sure that cmake prompts
 ...
 ```
 
-If one of the libraries cannot be found automatically by cmake, i.e. if you installed it in non-standard paths, you can provide the path to the library in the `cmake` command. Considering for example the OpenBLAS library, the sytax is:
+If a library is not found automatically by CMake (e.g., if it was installed in a non-standard location), you can manually specify the path in the `cmake` command. For example, to specify the OpenBLAS library path:
 ```
 cmake -DOPENSMOKE_USE_OPENBLAS=1 -DOpenBLAS_ROOT=/opt/homebrew/Cellar/openblas/0.3.27 ..
 ```
