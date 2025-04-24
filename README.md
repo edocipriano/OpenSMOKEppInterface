@@ -25,6 +25,26 @@ export OPENSMOKE_LATEST=${HOME}/OpenSMOKE/OpenSMOKEppMinimal4Basilisk/source
 export OPENSMOKE_INTERFACE=${HOME}/OpenSMOKE/OpenSMOKEppInterface
 ```
 
+If you use this repository with [Basilisk](http://www.basilisk.fr) and with [My Basilisk Sandbox](https://github.com/edocipriano/basilisk-sandbox-ecipriano) I suggest you the following directories structure:
+
+```
+├── OpenSMOKE
+│   ├── OpenSMOKEppMinimal4Basilisk
+│   └── OpenSMOKEppInterface
+└── basilisk
+    ├── basilisk
+    │   ├── _darcs
+    │   └── src
+    └── basilisk-sandbox-ecipriano
+        ├── README.md
+        ├── dev
+        ├── doc
+        ├── run
+        ├── src
+        └── test
+```
+
+
 ## 🛠️ Installation
 The default installation tool for this library is [CMake](https://cmake.org), which attempts to automatically find the dependency libraries if they are installed in standard locations.
 Assuming you are using OpenBLAS, compile the project with the following commands:
@@ -54,4 +74,10 @@ If any errors occur during compilation, make sure that CMake is detecting the co
 If a library is not found automatically by CMake (e.g., if it was installed in a non-standard location), you can manually specify the path in the `cmake` command. For example, to specify the OpenBLAS library path:
 ```
 cmake -DOPENSMOKE_USE_OPENBLAS=1 -DOpenBLAS_ROOT=/opt/homebrew/Cellar/openblas/0.3.27 ..
+```
+
+### 🧪 Tests
+After compilation, you can test that everything is correctly installed by running a small suite of tests:
+```
+ctest
 ```
