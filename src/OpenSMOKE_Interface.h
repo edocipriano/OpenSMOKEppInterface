@@ -296,14 +296,14 @@ double
 void
   OpenSMOKE_GasProp_HeatCapacity_PureSpecies (double * cp);
 
-/**
+/** 
 ### *OpenSMOKE_GasProp_Dmix()* Mixture diffusion coefficients
 
 * *x*: mole fractions in gas phase
-* *i*: index of the species
-*/
-double
-  OpenSMOKE_GasProp_Dmix (const double* x, const int i);
+* *Diffs*: diffusion coefficients of the gas phase species (to be computed)
+ */
+void
+  OpenSMOKE_GasProp_Dmix (const double* x, double* Diffs);
 
 /**
 ### *OpenSMOKE_MolecularWeight_From_MoleFractions()*: Mixture molecular weight from mole fractions in gas phase
