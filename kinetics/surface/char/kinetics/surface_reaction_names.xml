@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<opensmoke version="0.1a">
+<reaction-number>
+2
+</reaction-number>
+<reaction-names>
+0.5O2+C(s)=>CO
+CO2+C(s)=>2CO
+</reaction-names>
+</opensmoke>

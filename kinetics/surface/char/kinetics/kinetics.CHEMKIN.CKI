@@ -1,0 +1,20 @@
+ELEMENTS
+C
+H
+O
+END
+
+SPECIES
+CO                            O2                            CO2                           
+H2O                           
+END
+
+REACTIONS
+
+CO+0.5O2=>CO2                                           3.9811e+14    0.000     40000.00
+ FORD /  CO  1.0000/
+ FORD /  O2  0.2500/
+ FORD /  H2O  0.5000/
+
+END
+
