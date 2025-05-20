@@ -1,0 +1,24 @@
+ELEMENTS
+C 
+H 
+O
+N
+K
+END
+
+SPECIES
+CH2OHCH2CHO    FURFURAL
+CH2OHCHO 	CHOCHO		
+CH3CHO		   C6H6O3      CH3OH		CH2O		
+HCOOH          C6H10O5     
+FURAN     CH3COCH3   LVG
+H2O            
+CO			   CO2         H2        CH4        
+N2
+END
+
+REACTIONS
+
+N2 => N2 1.E1 .000 10000.0
+
+END

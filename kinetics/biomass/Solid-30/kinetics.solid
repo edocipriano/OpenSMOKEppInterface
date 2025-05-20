@@ -1,0 +1,24 @@
+MATERIAL BIOMASS
+
+SOLID
+CELL CELLA CHAR COH2S   COS
+CH2OS   H2S LVGS	CHARO   COSTIFFS 
+END
+
+REACTIONS    
+CELL=>CELLA                                                                                                                                                                              7.000E+13  0.000  45000.0
+CELLA=>0.3251CH2OHCHO+0.02CHOCHO+0.0431CH3CHO+0.08C6H6O3+0.14CH3OH+0.2637CH2O+0.08CO+0.06COS+0.29CO2+0.0023H2+1.8547H2O+0.05CH2OS+0.02HCOOH+0.026CH2OHCH2CHO+0.03CH4+0.024H2S+1.1CHAR+0.1323CH3COCH3+0.287FURFURAL+0.2FURAN            1.500E+06  0.000  20000.0
+CELLA=>0.6LVG+0.2LVGS+0.2C6H10O5                                                                                                                                                         5.000E+04  0.000  14500.0
+CELL=>4.45H2O+5.45CHAR+0.12COH2S+0.18CH2OS+0.25COS+0.125H2S+0.125H2                                                                                                                      8.000E+07  0.000  31000.0
+
+COS=>CO                                                                                                                                                                                  5.000E+12  0.000  52500.0
+CH2OS=>0.8CHAR+0.8H2O+.2CO+.2H2                                                                                                                                                          6.000E+10  0.000  50000.0
+COH2S=>0.2CHAR+0.2H2O+0.4CO+0.8H2+0.4COSTIFFS                                                                                                                                            1.000E+09  0.000  59000.0
+COSTIFFS=>0.8CO+0.2CHARO                                                                                                                                                                 1.800E+08  0.000  65000.0
+H2S=>H2                                                                                                                                                                                  1.800E+08  0.000  70000.0
+LVGS=>LVG                                                                                                                                                                        	     9.500E-02  1.000  10000.0
+DUPLICATE
+LVGS=>LVG                                                                                                                                                                        	     6.000E+11  0.000  45000.0
+DUPLICATE
+
+END

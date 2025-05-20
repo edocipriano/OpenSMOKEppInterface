@@ -1,0 +1,14 @@
+MATERIAL BIOMASS
+
+SOLID
+CELL CELLA CHAR 
+CHARO 
+END
+
+REACTIONS    
+CELL=>CELLA                                                                                                                                                                              7.000E+13  0.000  45000.0
+CELLA=>0.3251CH2OHCHO+0.02CHOCHO+0.0431CH3CHO+0.24H2O+0.48CHAR+0.14CHAR+0.14H2+0.14H2O+0.2637CHAR+0.2637H2O+0.08CO+0.06CO+0.29CO2+0.0023H2+1.8547H2O+0.05CHAR+0.05H2O+0.02HCOOH+0.026CH2OHCH2CHO+0.06H2+0.03CHAR+0.024H2+1.1CHAR+0.1323CH3COCH3+0.287FURFURAL+0.2FURAN            1.500E+06  0.000  20000.0
+CELLA=>LVG                                                                                                                                                         5.000E+04  0.000  14500.0
+CELL=>4.45H2O+5.45CHAR+0.3CHAR+0.3H2O+0.25CO+0.125H2+0.125H2                                                                                                                      8.000E+07  0.000  31000.0
+
+END
