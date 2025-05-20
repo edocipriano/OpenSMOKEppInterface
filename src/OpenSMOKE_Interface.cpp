@@ -12,6 +12,8 @@
 #include "maps/KineticsMap_Liquid_CHEMKIN.h"
 #include "maps/ThermodynamicsMap_Solid_CHEMKIN.h"
 #include "maps/KineticsMap_Solid_CHEMKIN.h"
+#include "maps/ThermodynamicsMap_Surface_CHEMKIN.h"
+#include "maps/KineticsMap_Surface_CHEMKIN.h"
 
 // OpenSMOKE++ Thermodynamics and liquid phase properties
 #include "thermodynamics/mixture/mixtureL/mixtureL.h"
@@ -34,6 +36,9 @@ OpenSMOKE::KineticsMap_Liquid_CHEMKIN*       kineticsLiquidMapXML;
 
 OpenSMOKE::ThermodynamicsMap_Solid_CHEMKIN* thermodynamicsSolidMapXML;
 OpenSMOKE::KineticsMap_Solid_CHEMKIN*       kineticsSolidMapXML;
+
+OpenSMOKE::ThermodynamicsMap_Surface_CHEMKIN* thermodynamicsSurfaceMapXML;
+OpenSMOKE::KineticsMap_Surface_CHEMKIN* kineticsSurfaceMapXML;
 
 speciesMap* species_map;
 mixtureL* liqmix;
@@ -62,6 +67,8 @@ void OpenSMOKE_Init (void) {
   thermodynamicsLiquidMapXML = NULL;
   kineticsLiquidMapXML = NULL;
   thermodynamicsSolidMapXML = NULL;
+  thermodynamicsSurfaceMapXML = NULL;
+  kineticsSurfaceMapXML = NULL;
   kineticsSolidMapXML = NULL;
   species_map = NULL;
   liqmix = NULL;
@@ -81,6 +88,8 @@ void OpenSMOKE_Clean (void) {
   cleanptr (kineticsLiquidMapXML);
   cleanptr (thermodynamicsSolidMapXML);
   cleanptr (kineticsSolidMapXML);
+  cleanptr (thermodynamicsSurfaceMapXML);
+  cleanptr (kineticsSurfaceMapXML);
   //cleanptr (species_map); // FIXME: strange behavior
   //cleanptr (liqmix);      // FIXME: strange behavior
 }
@@ -160,6 +169,25 @@ void OpenSMOKE_ReadSolidKinetics (const char* kinfolder) {
     std::cout<< "Unable to read kinetics.solid.xml" << std::endl;
 }
 
+void OpenSMOKE_ReadSurfaceKinetics (const char* kinfolder) {
+
+  boost::filesystem::path path_kinetics = boost::filesystem::exists(kinfolder) ? kinfolder : "kinetics";
+  boost::property_tree::ptree ptree;
+  if (boost::filesystem::exists (path_kinetics / "kinetics.surface.xml")) {
+    boost::property_tree::read_xml( (path_kinetics / "kinetics.surface.xml").string(), ptree );
+
+    double tStart = OpenSMOKE::OpenSMOKEGetCpuTime();
+
+    thermodynamicsSurfaceMapXML = new OpenSMOKE::ThermodynamicsMap_Surface_CHEMKIN(ptree);
+    kineticsSurfaceMapXML = new OpenSMOKE::KineticsMap_Surface_CHEMKIN(*thermodynamicsSurfaceMapXML, ptree);
+
+    double tEnd = OpenSMOKE::OpenSMOKEGetCpuTime();
+    std::cout<< "Time to read XML file: " << tEnd - tStart << endl;
+  }
+  else
+    std::cout<< "Unable to read kinetics.surface.xml" << std::endl;
+}
+
 void OpenSMOKE_ReadLiquidProperties (const char* liqpropfolder) {
   std::string opensmoke_interface_root = std::getenv ("OPENSMOKE_INTERFACE");
   boost::filesystem::path path_liqprop
@@ -191,12 +219,20 @@ int OpenSMOKE_NumberOfSolidSpecies (void) {
   return thermodynamicsSolidMapXML->number_of_solid_species();
 }
 
+int OpenSMOKE_NumberOfSurfaceSpecies (void) {
+  return thermodynamicsSurfaceMapXML->number_of_site_species();
+}
+
 int OpenSMOKE_NumberOfReactions (void) {
   return kineticsMapXML->NumberOfReactions();
 }
 
 int OpenSMOKE_NumberOfSolidReactions (void) {
   return kineticsSolidMapXML->NumberOfReactions();
+}
+
+int OpenSMOKE_NumberOfSurfaceReactions (void) {
+  return kineticsSurfaceMapXML->NumberOfReactions();
 }
 
 double OpenSMOKE_Printpi (void) {
@@ -223,6 +259,16 @@ void OpenSMOKE_LiqProp_SetPressure (const double P) {
 void OpenSMOKE_LiqProp_SetTemperature (const double T) {
   thermodynamicsLiquidMapXML->SetTemperature(T);
   kineticsLiquidMapXML->SetTemperature(T);
+}
+
+void OpenSMOKE_SurProp_SetTemperature (const double T) {
+  thermodynamicsSurfaceMapXML->SetTemperature (T);
+  kineticsSurfaceMapXML->SetTemperature (T);
+}
+
+void OpenSMOKE_SurProp_SetPressure (const double P) {
+  thermodynamicsSurfaceMapXML->SetPressure (P);
+  kineticsSurfaceMapXML->SetPressure (P);
 }
 
 void OpenSMOKE_SolProp_SetPressure (const double P) {
@@ -269,6 +315,24 @@ double OpenSMOKE_GasProp_kPlanckMix (const double * x) {
 
 double OpenSMOKE_SolProp_HeatRelease (const double * Rgas, const double * Rsolid) {
   return kineticsSolidMapXML->HeatRelease(Rgas, Rsolid);
+}
+
+void OpenSMOKE_SurProp_KineticConstants (void) {
+  kineticsSurfaceMapXML->KineticConstants();
+}
+
+void OpenSMOKE_SurProp_ReactionRates (const double* c, const double* z,
+    const double* a, const double* gamma) {
+  kineticsSurfaceMapXML->ReactionRates (c, z, a, gamma);
+}
+
+void OpenSMOKE_SurProp_FormationRatesGasOnly (double * Rgas) {
+  kineticsSurfaceMapXML->FormationRates (Rgas);
+}
+
+void OpenSMOKE_SurProp_FormationRates (double * Rgas, double * Rsite,
+    double * Rbulk, double * RsitePhases) {
+  kineticsSurfaceMapXML->FormationRates (Rgas, Rsite, Rbulk, RsitePhases);
 }
 
 double OpenSMOKE_MW (const int i) {
