@@ -335,6 +335,11 @@ void OpenSMOKE_SurProp_FormationRates (double * Rgas, double * Rsite,
   kineticsSurfaceMapXML->FormationRates (Rgas, Rsite, Rbulk, RsitePhases);
 }
 
+double OpenSMOKE_SurProp_HeatRelease (const double* Rgas, const double* Rsite,
+    const double* Rbulk) {
+  return kineticsSurfaceMapXML->HeatRelease (Rgas, Rsite, Rbulk);
+}
+
 double OpenSMOKE_MW (const int i) {
   return thermodynamicsMapXML->MW(i);
 }

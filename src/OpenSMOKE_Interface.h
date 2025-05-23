@@ -244,7 +244,7 @@ void
 * *T*: surface temperature
 */
 void
-  OpenSMOKE_SurProp_SetPressure (const double T);
+  OpenSMOKE_SurProp_SetPressure (const double P);
 
 /**
 # Solid Phase Thermodynamics
@@ -522,6 +522,16 @@ void
   OpenSMOKE_SurProp_FormationRates (double * Rgas, double * Rsite,
       double * Rbulk, double * RsitePhases);
 
+/**
+### *OpenSMOKE_SurProp_HeatRelease()*: Compute the heat released from the solid phase reactions
+
+* *Rgas*: TBD
+* *Rsite*: TBD
+* *Rbulk*: Rbulk
+*/
+double
+  OpenSMOKE_SurProp_HeatRelease (const double* Rgas, const double* Rsite,
+      const double* Rbulk);
 
 /**
 ## Liquid Phase Thermodynamics
