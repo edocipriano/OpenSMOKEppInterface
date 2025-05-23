@@ -2,6 +2,7 @@
 #include "OpenSMOKE_Interface.h"
 
 #define kinfolder "../kinetics/surface/char/kinetics"
+#define rho 1
 
 int main () {
   OpenSMOKE_Init();
@@ -64,6 +65,9 @@ int main () {
 
   for (unsigned int i = 0; i < NSS; i++)
     std::cerr<< "RsitePhases species " << i << ": " << RsitePhases[i] << std::endl;
+
+  double Qr = OpenSMOKE_SurProp_HeatRelease (Rgas.data(), Rsite.data(), Rbulk.data());
+  std::cerr<< "Heat released by the chemical reactions: " << Qr << std::endl;
 
   OpenSMOKE_Clean();
   return 0;
