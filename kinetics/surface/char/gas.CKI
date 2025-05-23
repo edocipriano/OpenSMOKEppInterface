@@ -10,8 +10,8 @@ SPECIES
 END
 
 REACTIONS
-  CO + 0.5O2 => CO2                 398107170553496.94 0.00      40000.00
+  CO + 0.5O2 => CO2                 1.23E+8     0.00   29971.31931166348
   FORD /CO 1/
   FORD /H2O 0.5/
-  FORD /O2 0.25/
+  FORD /O2 0.5/
 END

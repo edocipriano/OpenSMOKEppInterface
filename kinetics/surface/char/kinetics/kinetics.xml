@@ -3,8 +3,8 @@
 <Properties>
   <Author>undefined</Author>
   <Place>undefined</Place>
-  <Date>2025-05-20</Date>
-  <Time>17:37:44</Time>
+  <Date>2025-05-22</Date>
+  <Time>18:58:54</Time>
   <Comments>
 no comments
 </Comments>
@@ -142,7 +142,7 @@ E
 <Direct>
 <lnA>
 1
-2.8436925898476463e+01
+1.1719939634354555e+01
 
 </lnA>
 <negative-lnA>
@@ -156,7 +156,7 @@ E
 </Beta>
 <E_over_R>
 1
-2.0130851279002160e+04
+1.5083704292464574e+04
 
 </E_over_R>
 </Direct>
@@ -238,9 +238,9 @@ E
 4
 0 0 0 0 
 4
-0 0 0 1 
+0 1 0 1 
 4
-0 1 0 0 
+0 0 0 0 
 4
 0 0 0 0 
 4
@@ -257,12 +257,12 @@ E
 
 0
 
-1
-1 
-1
-1 
-1
-2.5000000000000000e-01 
+2
+1 1 
+0
+
+0
+
 0
 
 0

@@ -55,9 +55,9 @@
 
 
       1. CO + 0.5O2  => CO2 
-         k:       3.981072e+14	    0.00      40000.00
+         k:       1.230000e+08	    0.00      29971.32
          Reaction order of species CO                 equal to 1.0000
-         Reaction order of species O2                 equal to 0.2500
+         Reaction order of species O2                 equal to 0.5000
          Reaction order of species H2O                equal to 0.5000
 
 

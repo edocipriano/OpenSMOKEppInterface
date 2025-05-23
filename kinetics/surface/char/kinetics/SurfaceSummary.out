@@ -57,14 +57,14 @@
 
 
       1. 0.5O2 + C(s)  => CO 
-         k:       1.887843e-03	    1.00      25812.62
+         k:       1.573042e-01	    1.00      25812.62
          Reaction order of species CO                 equal to 0.0000
          Reaction order of species O2                 equal to 1.0000
          Reaction order of species C(s)               equal to 0.0000
 
 
       2. CO2 + C(s)  => 2CO 
-         k:       4.593630e+00	    0.45      35492.35
+         k:       3.827849e+02	    0.45      35492.35
          Reaction order of species CO                 equal to 0.0000
          Reaction order of species CO2                equal to 0.4500
          Reaction order of species C(s)               equal to 0.0000
