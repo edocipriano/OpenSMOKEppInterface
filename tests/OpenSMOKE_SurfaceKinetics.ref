@@ -9,10 +9,11 @@ R species 0: -0.0346047
 R species 1: -0.0173024
 R species 2: 0.0346047
 R species 3: 0
+Heat released by the gas phase chemical reactions: 9.77894e+06
 Rgas species 0: 0.000658431
 Rgas species 1: -0.000179432
 Rgas species 2: -0.000149784
 Rgas species 3: 0
 Rsite species 0: -0.000508647
 RsitePhases species 0: -0.000508647
-Heat released by the chemical reactions: 8631.8
+Heat released by the surface chemical reactions: 8631.8

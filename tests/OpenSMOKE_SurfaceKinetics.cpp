@@ -47,6 +47,9 @@ int main () {
   for (unsigned int i = 0; i < NGS; i++)
     std::cerr<< "R species " << i << ": " << R[i] << std::endl;
 
+  double Qh = OpenSMOKE_GasProp_HeatRelease (R.data());
+  std::cerr<< "Heat released by the gas phase chemical reactions: " << Qh << std::endl;
+
   OpenSMOKE_SurProp_SetTemperature (Temperature);
   OpenSMOKE_SurProp_SetPressure (Pressure);
   OpenSMOKE_SurProp_ReactionRates (c.data(), z.data(), a.data(), gamma.data());
@@ -67,7 +70,7 @@ int main () {
     std::cerr<< "RsitePhases species " << i << ": " << RsitePhases[i] << std::endl;
 
   double Qr = OpenSMOKE_SurProp_HeatRelease (Rgas.data(), Rsite.data(), Rbulk.data());
-  std::cerr<< "Heat released by the chemical reactions: " << Qr << std::endl;
+  std::cerr<< "Heat released by the surface chemical reactions: " << Qr << std::endl;
 
   OpenSMOKE_Clean();
   return 0;
