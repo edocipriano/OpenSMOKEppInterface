@@ -513,10 +513,10 @@ void
 /**
 ### *OpenSMOKE_SurProp_FormationRates()*: Return the formation rates
 
-* *Rgas*: formation rate [kmol/m3/s] of each chemical species in gas phase (to be computed)
-* *Rsite*: TBD
-* *Rbulk*: TBD
-* *RsitePhases*: TBD
+* *Rgas*: formation rate [kmol/m2/s] of each chemical species in gas phase (to be computed)
+* *Rsite*: formation rate [kmol/m2/s] of each surface species
+* *Rbulk*: formation rate [kmol/m2/s] of the solid bulk species
+* *RsitePhases*: formation rate [kmol/m2/s] of the whole surface phase
 */
 void
   OpenSMOKE_SurProp_FormationRates (double * Rgas, double * Rsite,
@@ -525,9 +525,9 @@ void
 /**
 ### *OpenSMOKE_SurProp_HeatRelease()*: Compute the heat released from the solid phase reactions
 
-* *Rgas*: TBD
-* *Rsite*: TBD
-* *Rbulk*: Rbulk
+* *Rgas*: formation rate [kmol/m2/s] of each chemical species in gas phase (to be computed)
+* *Rsite*: formation rate [kmol/m2/s] of each surface species
+* *Rbulk*: formation rate [kmol/m2/s] of the solid bulk species
 */
 double
   OpenSMOKE_SurProp_HeatRelease (const double* Rgas, const double* Rsite,
