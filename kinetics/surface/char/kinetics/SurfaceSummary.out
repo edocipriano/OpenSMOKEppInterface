@@ -46,7 +46,7 @@
        ------------------------------------------------------------------------------------------------------------------
        Site phases:        density[mol/cm2]     sites      global-index   local-index   internal-index
        ------------------------------------------------------------------------------------------------------------------
-       1. SITE1            2.490000e-09     
+       1. SITE1            1.200000e-09     
              C(s)                             1.000000         5              1              1              
 
 --------------------------------------------------------------------------------------------------------
@@ -57,15 +57,13 @@
 
 
       1. 0.5O2 + C(s)  => CO 
-         k:       1.573042e-01	    1.00      25812.62
-         Reaction order of species CO                 equal to 0.0000
+         k:       6.581917e+01	    1.00      25812.62
          Reaction order of species O2                 equal to 1.0000
          Reaction order of species C(s)               equal to 0.0000
 
 
       2. CO2 + C(s)  => 2CO 
-         k:       3.827849e+02	    0.45      35492.35
-         Reaction order of species CO                 equal to 0.0000
+         k:       3.653356e+01	    0.45      35492.35
          Reaction order of species CO2                equal to 0.4500
          Reaction order of species C(s)               equal to 0.0000
 
