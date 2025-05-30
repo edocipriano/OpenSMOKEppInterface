@@ -7,6 +7,9 @@ target_link_libraries (OpenSMOKE_ODESolver PRIVATE opensmoke)
 add_executable (OpenSMOKE_SolidKinetics tests/OpenSMOKE_SolidKinetics.cpp)
 target_link_libraries (OpenSMOKE_SolidKinetics PRIVATE opensmoke)
 
+add_executable (OpenSMOKE_SurfaceKinetics tests/OpenSMOKE_SurfaceKinetics.cpp)
+target_link_libraries (OpenSMOKE_SurfaceKinetics PRIVATE opensmoke)
+
 add_test (NAME OpenSMOKE_GasKinetics
           COMMAND bash -c "
             ./OpenSMOKE_GasKinetics 2> OpenSMOKE_GasKinetics.log
@@ -21,6 +24,11 @@ add_test (NAME OpenSMOKE_SolidKinetics
           COMMAND bash -c "
             ./OpenSMOKE_SolidKinetics 2> OpenSMOKE_SolidKinetics.log
             diff OpenSMOKE_SolidKinetics.log ../tests/OpenSMOKE_SolidKinetics.ref")
+
+add_test (NAME OpenSMOKE_SurfaceKinetics
+          COMMAND bash -c "
+            ./OpenSMOKE_SurfaceKinetics 2> OpenSMOKE_SurfaceKinetics.log
+            diff OpenSMOKE_SurfaceKinetics.log ../tests/OpenSMOKE_SurfaceKinetics.ref")
 
 add_test (NAME OpenSMOKE_PythonInterface
           COMMAND bash -c "python3 ../tests/OpenSMOKE_PythonInterface.py")

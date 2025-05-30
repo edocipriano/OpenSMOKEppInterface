@@ -79,6 +79,14 @@ void
   OpenSMOKE_ReadSolidKinetics (const char* kinfolder);
 
 /**
+### *OpenSMOKE_ReadSurfaceKinetics()*: Read surface kinetics
+
+* *kinfolder*: path to the kinetics folder containing kinetics.surface.xml
+*/
+void
+  OpenSMOKE_ReadSurfaceKinetics (const char* kinfolder);
+
+/**
 ### *OpenSMOKE_ReadLiquidProperties()*: Read liquid properties folder
 
 * *liqpropfolder*: path to LiquidProperties
@@ -105,6 +113,12 @@ int
   OpenSMOKE_NumberOfSolidSpecies (void);
 
 /**
+### *OpenSMOKE_NumberOfSurfaceSpecies()*: Number of species in surface phase
+*/
+int
+  OpenSMOKE_NumberOfSurfaceSpecies (void);
+
+/**
 ### *OpenSMOKE_NumberOfReactions()*: Number of reactions in gas phase
 */
 int
@@ -115,6 +129,15 @@ int
 */
 int
   OpenSMOKE_NumberOfSolidReactions (void);
+
+/**
+### *OpenSMOKE_NumberOfSurfaceReactions()*: Number of surface reactions
+*/
+int
+  OpenSMOKE_NumberOfSurfaceReactions (void);
+
+
+
 /**
 ### *OpenSMOKE_Printpi()*: Print pi constant (debug)
 */
@@ -206,6 +229,22 @@ void
 */
 void
   OpenSMOKE_LiqProp_SetTemperature (const double T);
+
+/**
+### *OpenSMOKE_SurProp_SetTemperature()*: Set surface temperature
+
+* *T*: surface temperature
+*/
+void
+  OpenSMOKE_SurProp_SetTemperature (const double T);
+
+/**
+### *OpenSMOKE_SurProp_SetPressure()*: Set surface temperature
+
+* *T*: surface temperature
+*/
+void
+  OpenSMOKE_SurProp_SetPressure (const double P);
 
 /**
 # Solid Phase Thermodynamics
@@ -437,6 +476,62 @@ double
 */
 void
   OpenSMOKE_SolidMoleFractions_From_SolidMassFractions (double* x, double* MW, const double* y);
+
+/**
+## Surface Kinetics
+
+Functions for the calculation of surface kinetic properties.
+*/
+
+/**
+### *OpenSMOKE_SurProp_KineticConstants()*: Compute kinetic constants in solid phase
+*/
+void
+  OpenSMOKE_SurProp_KineticConstants (void);
+
+/**
+### *OpenSMOKE_SurProp_ReactionRates()*: Compute the reaction rates in solid phase
+
+* *c*: concentration of each chemical species in gas phase [kmol/m3]
+* *z*: surface species mole fractions [-]
+* *a*: activity of solid bulk species [-]
+* *gamma*: active site density [kmol/m2]
+*/
+
+void
+  OpenSMOKE_SurProp_ReactionRates (const double* c, const double* z,
+      const double* a, const double* gamma);
+
+/**
+### *OpenSMOKE_SurProp_FormationRatesGasOnly()*: Return the formation rates of the gas species
+
+* *Rgas*: formation rate [kmol/m3/s] of each chemical species in gas phase (to be computed)
+*/
+void
+  OpenSMOKE_SurProp_FormationRatesGasOnly (double * Rgas);
+
+/**
+### *OpenSMOKE_SurProp_FormationRates()*: Return the formation rates
+
+* *Rgas*: formation rate [kmol/m2/s] of each chemical species in gas phase (to be computed)
+* *Rsite*: formation rate [kmol/m2/s] of each surface species
+* *Rbulk*: formation rate [kmol/m2/s] of the solid bulk species
+* *RsitePhases*: formation rate [kmol/m2/s] of the whole surface phase
+*/
+void
+  OpenSMOKE_SurProp_FormationRates (double * Rgas, double * Rsite,
+      double * Rbulk, double * RsitePhases);
+
+/**
+### *OpenSMOKE_SurProp_HeatRelease()*: Compute the heat released from the solid phase reactions
+
+* *Rgas*: formation rate [kmol/m2/s] of each chemical species in gas phase (to be computed)
+* *Rsite*: formation rate [kmol/m2/s] of each surface species
+* *Rbulk*: formation rate [kmol/m2/s] of the solid bulk species
+*/
+double
+  OpenSMOKE_SurProp_HeatRelease (const double* Rgas, const double* Rsite,
+      const double* Rbulk);
 
 /**
 ## Liquid Phase Thermodynamics
