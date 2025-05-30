@@ -492,10 +492,10 @@ void
 /**
 ### *OpenSMOKE_SurProp_ReactionRates()*: Compute the reaction rates in solid phase
 
-* *c*: concentration of each chemical species in gas phase
-* *z*: TBD
-* *a*: TBD
-* *gamma*: TBD
+* *c*: concentration of each chemical species in gas phase [kmol/m3]
+* *z*: surface species mole fractions [-]
+* *a*: activity of solid bulk species [-]
+* *gamma*: active site density [kmol/m2]
 */
 
 void
