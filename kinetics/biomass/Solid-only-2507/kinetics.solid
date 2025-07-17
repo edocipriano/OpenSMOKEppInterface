@@ -23,6 +23,7 @@ HCE1=>.25C5H8O4+.25C6H10O5+.16FURFURAL+.13C6H6O3+0.09CO2+0.1CH4+.54H2O+0.06CH2OH
 HCE1=>0.4H2O+.39CO2+0.05HCOOH+.49CO+.01COS+.51CO2S+.05H2S+.4CH2O+.43CH2OS+0.3CH4+0.325CH4S+0.1C2H4+.075C2H4S+.975CHAR+0.37COH2S+0.1H2+0.2C2H6S                                           3.000E-03  1.000   3600.0
 HCE2=>0.0035CO+0.2898CO2+0CH4+0H2+0.1665H2O+.0661C2H5OH+.0423CH2OHCHO+.315CH3CO2H+.0178HCOOH+.145FURFURAL+.1362CH4S+.2312CH3OHS+.0158C2H4S+.45CO2S+.2337CH2OS+0.7662CHAR+.1H2S+0.7792COH2S+0.2445C2H6S  7.000E+09  0.000  30500.0 
 
+
 LIGH=>LIGOH+0.5C2H5CHO+0.4C2H4+0.2CH2OHCHO+.1CO+.1C2H6                                                                                                                                   6.700E+12  0.000  37500.0
 LIGO=>LIGOH+CO2                                                                                                                                                                          3.300E+08  0.000  25500.0
 LIGC=>0.35LIGCC+0.1VANILLIN+0.1C6H5OCH3+0.27C2H4+H2O+0.17CH2OS+0.4COH2S+0.22CH2O+0.21CO+0.1CO2+0.36CH4S+5.85CHAR+.2C2H6S+0.1H2S                                                          1.000E+11  0.000  37200.0   
@@ -50,9 +51,9 @@ H2S=>H2                                                                         
 LVGS=>LVG                                                                                                                                                                        	     9.500E-02  1.000  10000.0
 DUPLICATE
 LVGS=>LVG                                                                                                                                                                        	     6.000E+11  0.000  45000.0
-
 DUPLICATE
-MOIST=>H2O                                                                                                                                                                               6.000E+02  0.500   11525.0  !HUANG
+
+MOIST=>H2O                                                                                                                                                                               6.000E+02  -0.500   11525.0  !HUANG
 !MOIST=>H2O                                                                                                                                                                               1.000E+00  1.000   8000.0 !ORIGINAL
 
 !PROTEINS!!!
