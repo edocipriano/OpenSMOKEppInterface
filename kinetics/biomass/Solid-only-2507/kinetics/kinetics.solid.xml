@@ -3,8 +3,8 @@
 <Properties>
   <Author>undefined</Author>
   <Place>undefined</Place>
-  <Date>2025-07-16</Date>
-  <Time>16:56:59</Time>
+  <Date>2025-07-17</Date>
+  <Time>11:25:37</Time>
   <Comments>
 no comments
   </Comments>
@@ -310,7 +310,7 @@ chemkin_conventional
 1.9008467408854486e+01
 -2.3538783873815960e+00
 2.7120195492162559e+01
-0.0000000000000000e+00
+6.3969296552161463e+00
 
 </lnA>
 <Beta>
@@ -349,7 +349,7 @@ chemkin_conventional
 0.0000000000000000e+00
 1.0000000000000000e+00
 0.0000000000000000e+00
-1.0000000000000000e+00
+5.0000000000000000e-01
 
 </Beta>
 <E_over_R>
@@ -388,7 +388,7 @@ chemkin_conventional
 3.5228989738253782e+04
 5.0327128197505399e+03
 2.2647207688877432e+04
-4.0261702558004326e+03
+5.8002015247624977e+03
 
 </E_over_R>
 <ForwardKineticOrder>
