@@ -53,8 +53,10 @@ DUPLICATE
 LVGS=>LVG                                                                                                                                                                        	     6.000E+11  0.000  45000.0
 DUPLICATE
 
-MOIST=>H2O                                                                                                                                                                               6.000E+02  -0.500   11525.0  !HUANG
-!MOIST=>H2O                                                                                                                                                                               1.000E+00  1.000   8000.0 !ORIGINAL
+!MOIST=>H2O                                                                                                                                                                               6.000E+02  -0.500   11525.0  !HUANG
+MOIST  =>H2O                                                                                                                                                                               1.000E+00  1.000   8000.0 !ORIGINAL
+
+H2O  => MOIST                                                                                                                                                                               5.874E-06  2.000   -835.49 !INVERSE
 
 !PROTEINS!!!
 ! PROTO=>2.5PROTOH+.6PROTCC+25NH3+9NO+TARN+12.75C2H4+37.3CO+7.7CO2+71H2O                                                                                                                   .1000E+05   .000  15500.0     
