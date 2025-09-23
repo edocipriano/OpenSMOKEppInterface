@@ -1,0 +1,28 @@
+ELEMENTS
+C
+H
+O
+N
+END
+
+SPECIES
+N2                            TAR                           H2O                           
+O2                            CO                            CO2                           
+END
+
+REACTIONS
+
+TAR+3O2=>5H2O+6CO                                       1.8000e+12    0.000     30000.00
+ FORD /  TAR  0.1500/
+ FORD /  O2  1.6000/
+
+0.5O2+CO=>CO2                                           4.0000e+14    0.000     40000.00
+ FORD /  H2O  0.5000/
+ FORD /  O2  0.2500/
+ FORD /  CO  1.0000/
+
+CO2=>0.5O2+CO                                           5.0000e+08    0.000     40000.00
+ FORD /  CO2  1.0000/
+
+END
+
