@@ -1,0 +1,11 @@
+MATERIAL BIOMASS
+
+SOLID
+POM
+END
+
+REACTIONS
+!POM => 0.9POM+CH2O            1.900E+11  0.000  118000 ! from literature RC
+POM => 0.9POM+CH2O             3.000E+13  0.000   30000 ! from Nobili
+END
+

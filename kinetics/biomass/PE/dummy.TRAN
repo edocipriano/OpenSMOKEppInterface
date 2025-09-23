@@ -1,0 +1,5 @@
+!AUTHORS:  RCaraccio
+!NOTE:     Dummy biomass mech
+N2                            1    97.530     3.621     0.000     1.760     4.000 !
+C2H4                          2   238.400     3.496     0.000     0.000     1.500 !
+P-HDPE-P                      2   650.000     8.350     0.000     0.000     1.000 !FAKE
