@@ -328,9 +328,7 @@ double
   OpenSMOKE_SolProp_HeatCapacity (const double* x);
 
 /**
-### *OpenSMOKE_GasProp_SpeciesHeatCapacity()*: Specific heat capacity of species i in the gas phase
-
-* *i*: index of species
+### *OpenSMOKE_GasProp_SpeciesHeatCapacity()*: Specific heat capacity of species in gas phase
 */
 void
   OpenSMOKE_GasProp_HeatCapacity_PureSpecies (double * cp);
@@ -339,10 +337,10 @@ void
 ### *OpenSMOKE_GasProp_Dmix()* Mixture diffusion coefficients
 
 * *x*: mole fractions in gas phase
-* *i*: index of the species
+* *r*: (result) array of diffusivities
 */
-double
-  OpenSMOKE_GasProp_Dmix (const double* x, const int i);
+void
+  OpenSMOKE_GasProp_Dmix (const double* x, double* r);
 
 /**
 ### *OpenSMOKE_MolecularWeight_From_MoleFractions()*: Mixture molecular weight from mole fractions in gas phase
@@ -648,10 +646,10 @@ double
 * *T*: temperature in liquid phase
 * *P*: Pressure in liquid phase
 * *x*: mole fractions in liquid phase
-* *i*: index of the species
+* *r*: (result) array of diffusivities
 */
-double
-  OpenSMOKE_LiqProp_Dmix_PerkinsGeankopolis (double T, double P, const double* x, const int i);
+void
+  OpenSMOKE_LiqProp_Dmix_PerkinsGeankopolis (double T, double P, const double* x, double* r);
 
 /**
 ### *OpenSMOKE_LiqProp_Dmix_Cullinan()* Mixture diffusion coefficients (Cullinan model)
@@ -659,10 +657,10 @@ double
 * *T*: temperature in liquid phase
 * *P*: Pressure in liquid phase
 * *x*: mole fractions in liquid phase
-* *i*: index of the species
+* *r*: (result) array of diffusivities
 */
-double
-  OpenSMOKE_LiqProp_Dmix_Cullinan (double T, double P, const double* x, const int i);
+void
+  OpenSMOKE_LiqProp_Dmix_Cullinan (double T, double P, const double* x, double* r);
 
 /**
 ### *OpenSMOKE_LiqProp_Dmix_LefflerCullinan()* Mixture diffusion coefficients (Leffler Cullinan model)
@@ -670,10 +668,10 @@ double
 * *T*: temperature in liquid phase
 * *P*: Pressure in liquid phase
 * *x*: mole fractions in liquid phase
-* *i*: index of the species
+* *r*: (result) array of diffusivities
 */
-double
-  OpenSMOKE_LiqProp_Dmix_LefflerCullinan (double T, double P, const double* x, const int i);
+void
+  OpenSMOKE_LiqProp_Dmix_LefflerCullinan (double T, double P, const double* x, double* r);
 
 /**
 ### *OpenSMOKE_LiquidMolecularWeight_From_LiquidMoleFractions()*: Mixture molecular weight from mole fractions in liquid phase

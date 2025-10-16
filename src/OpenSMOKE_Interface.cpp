@@ -401,11 +401,12 @@ void OpenSMOKE_GasProp_HeatCapacity_PureSpecies (double * cp) {
     cp[i] /= OpenSMOKE_MW (i);
 }
 
-double OpenSMOKE_GasProp_Dmix (const double* x, const int i) {
+void OpenSMOKE_GasProp_Dmix (const double* x, double* r) {
   const double baseline_diffusion = 1e-10;
   double Diffs[thermodynamicsMapXML->NumberOfSpecies()];
   transportMapXML->MassDiffusionCoefficients (Diffs, x, transportMapXML->is_species_bundling());
-  return Diffs[i] + baseline_diffusion;
+  for (unsigned int i=0; i<OpenSMOKE_NumberOfSpecies(); i++)
+    r[i] = Diffs[i] + baseline_diffusion;
 }
 
 double OpenSMOKE_GasProp_Concentrations (double T, double P) {
@@ -497,52 +498,58 @@ double OpenSMOKE_LiqProp_Sigma (const char* s, double T) {
   return species_map->sigma(s, T);
 }
 
-double OpenSMOKE_LiqProp_Dmix_PerkinsGeankopolis (double T, double P, const double* x, const int i) {
+void OpenSMOKE_LiqProp_Dmix_PerkinsGeankopolis (double T, double P, const double* x, double* r) {
   if (OpenSMOKE_NumberOfLiquidSpecies() == 1) {
-    return 0;
+    r[0] = 0.;
   }
   else {
     Eigen::MatrixXd Dinf = liqmix->Dinf (T,P);
-    double Dmix = 0.;
-    for (int j=0; j<OpenSMOKE_NumberOfLiquidSpecies(); j++) {
-      if (i != j) {
-        double etaLj = OpenSMOKE_LiqProp_DynamicViscosity_PureSpecies (liqspecies[j].data(), T);
-        double xjDjmuj = x[j]*Dinf(i,j)*std::pow (etaLj, 0.8);
-        Dmix += xjDjmuj;
+    for (int i=0; i<OpenSMOKE_NumberOfLiquidSpecies(); i++) {
+      double Dmix = 0.;
+      for (int j=0; j<OpenSMOKE_NumberOfLiquidSpecies(); j++) {
+        if (i != j) {
+          double etaLj = OpenSMOKE_LiqProp_DynamicViscosity_PureSpecies (liqspecies[j].data(), T);
+          double xjDjmuj = x[j]*Dinf(i,j)*std::pow (etaLj, 0.8);
+          Dmix += xjDjmuj;
+        }
       }
+      Dmix /= std::pow (OpenSMOKE_LiqProp_DynamicViscosity_Mix(T,x), 0.8);
+      r[i] = Dmix;
     }
-    Dmix /= std::pow (OpenSMOKE_LiqProp_DynamicViscosity_Mix(T,x), 0.8);
-    return Dmix;
   }
 }
 
-double OpenSMOKE_LiqProp_Dmix_Cullinan (double T, double P, const double* x, const int i) {
+void OpenSMOKE_LiqProp_Dmix_Cullinan (double T, double P, const double* x, double* r) {
   if (OpenSMOKE_NumberOfLiquidSpecies() == 1) {
-    return 0;
+    r[0] = 0.;
   }
   else {
     Eigen::MatrixXd Dinf = liqmix->Dinf (T,P);
-    double Dmix = 1.;
-    for (int j=0; j<OpenSMOKE_NumberOfLiquidSpecies(); j++) {
-      Dmix *= std::pow (Dinf(i,j), x[j]);
+    for (int i=0; i<OpenSMOKE_NumberOfLiquidSpecies(); i++) {
+      double Dmix = 1.;
+      for (int j=0; j<OpenSMOKE_NumberOfLiquidSpecies(); j++) {
+        Dmix *= std::pow (Dinf(i,j), x[j]);
+      }
+      r[i] = Dmix;
     }
-    return Dmix;
   }
 }
 
-double OpenSMOKE_LiqProp_Dmix_LefflerCullinan (double T, double P, const double* x, const int i) {
+void OpenSMOKE_LiqProp_Dmix_LefflerCullinan (double T, double P, const double* x, double* r) {
   if (OpenSMOKE_NumberOfLiquidSpecies() == 1) {
-    return 0;
+    r[0] = 0.;
   }
   else {
     Eigen::MatrixXd Dinf = liqmix->Dinf (T,P);
-    double Dmix = 1.;
-    for (int j=0; j<OpenSMOKE_NumberOfLiquidSpecies(); j++) {
-      double etaLj = OpenSMOKE_LiqProp_DynamicViscosity_PureSpecies (liqspecies[j].data(), T);
-      Dmix *= std::pow (Dinf(i,j)*etaLj, x[j]);
+    for (int i=0; i<OpenSMOKE_NumberOfLiquidSpecies(); i++) {
+      double Dmix = 1.;
+      for (int j=0; j<OpenSMOKE_NumberOfLiquidSpecies(); j++) {
+        double etaLj = OpenSMOKE_LiqProp_DynamicViscosity_PureSpecies (liqspecies[j].data(), T);
+        Dmix *= std::pow (Dinf(i,j)*etaLj, x[j]);
+      }
+      Dmix /= OpenSMOKE_LiqProp_DynamicViscosity_Mix(T,x);
+      r[i] = Dmix;
     }
-    Dmix /= OpenSMOKE_LiqProp_DynamicViscosity_Mix(T,x);
-    return Dmix;
   }
 }
 
