@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <opensmoke version="0.1a">
 <reaction-number>
-3
+5
 </reaction-number>
 <reaction-names>
-TAR+3O2=>5H2O+6CO
-0.5O2+CO=>CO2
-CO2=>0.5O2+CO
+TAR=>CH4+5CO+3H2
+CH4+0.5O2=>CO+2H2
+CH4+H2O=>CO+3H2
+0.5O2+H2=H2O
+CO+H2O=CO2+H2
 </reaction-names>
 </opensmoke>
