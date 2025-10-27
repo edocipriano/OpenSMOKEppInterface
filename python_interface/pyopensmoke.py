@@ -254,3 +254,54 @@ c_odefunction = CFUNCTYPE(None, POINTER(c_double), c_double, POINTER(c_double), 
 OpenSMOKE_ODESolver = OpenSMOKE.OpenSMOKE_ODESolver
 OpenSMOKE_ODESolver.argtypes = [POINTER(c_odefunction), c_int, c_double, POINTER(c_double), c_void_p]
 
+OpenSMOKE_ReadSolidKinetics = OpenSMOKE.OpenSMOKE_ReadSolidKinetics
+OpenSMOKE_ReadSolidKinetics.argtypes = [c_char_p]
+OpenSMOKE_ReadSolidKinetics.restype = None
+
+OpenSMOKE_NumberOfSolidSpecies = OpenSMOKE.OpenSMOKE_NumberOfSolidSpecies
+OpenSMOKE_NumberOfSolidSpecies.argtypes = None
+OpenSMOKE_NumberOfSolidSpecies.restype = c_int
+
+OpenSMOKE_NumberOfSolidReactions = OpenSMOKE.OpenSMOKE_NumberOfSolidReactions
+OpenSMOKE_NumberOfSolidReactions.argtypes = None
+OpenSMOKE_NumberOfSolidReactions.restype = c_int
+
+OpenSMOKE_SolProp_SetPressure = OpenSMOKE.OpenSMOKE_SolProp_SetPressure
+OpenSMOKE_SolProp_SetPressure.argtypes = [c_double]
+OpenSMOKE_SolProp_SetPressure.restype = None
+
+OpenSMOKE_SolProp_SetTemperature = OpenSMOKE.OpenSMOKE_SolProp_SetTemperature
+OpenSMOKE_SolProp_SetTemperature.argtypes = [c_double]
+OpenSMOKE_SolProp_SetTemperature.restype = None
+
+OpenSMOKE_SolProp_KineticConstants = OpenSMOKE.OpenSMOKE_SolProp_KineticConstants
+OpenSMOKE_SolProp_KineticConstants.argtypes = None
+OpenSMOKE_SolProp_KineticConstants.restype = None
+
+OpenSMOKE_SolProp_ReactionRates = OpenSMOKE.OpenSMOKE_SolProp_ReactionRates
+OpenSMOKE_SolProp_ReactionRates.argtypes = [POINTER(c_double), POINTER(c_double)]
+OpenSMOKE_SolProp_ReactionRates.restype = None
+
+OpenSMOKE_SolProp_FormationRates = OpenSMOKE.OpenSMOKE_SolProp_FormationRates
+OpenSMOKE_SolProp_FormationRates.argtypes = [POINTER(c_double), POINTER(c_double)]
+OpenSMOKE_SolProp_FormationRates.restype = None
+
+OpenSMOKE_SolProp_HeatRelease = OpenSMOKE.OpenSMOKE_SolProp_HeatRelease
+OpenSMOKE_SolProp_HeatRelease.argtypes = [POINTER(c_double), POINTER(c_double)]
+OpenSMOKE_SolProp_HeatRelease.restype = c_double
+
+OpenSMOKE_MW_Solid = OpenSMOKE.OpenSMOKE_MW_Solid
+OpenSMOKE_MW_Solid.argtypes = [c_int]
+OpenSMOKE_MW_Solid.restype = c_double
+
+OpenSMOKE_NamesOfSolidSpecies = OpenSMOKE.OpenSMOKE_NamesOfSolidSpecies
+OpenSMOKE_NamesOfSolidSpecies.argtypes = [c_int]
+OpenSMOKE_NamesOfSolidSpecies.restype = c_char_p
+
+OpenSMOKE_IndexOfSolidSpecies = OpenSMOKE.OpenSMOKE_IndexOfSolidSpecies
+OpenSMOKE_IndexOfSolidSpecies.argtypes = [c_char_p]
+OpenSMOKE_IndexOfSolidSpecies.restype = c_int
+
+OpenSMOKE_SolProp_HeatCapacity = OpenSMOKE.OpenSMOKE_SolProp_HeatCapacity
+OpenSMOKE_SolProp_HeatCapacity.argtypes = [POINTER(c_double)]
+OpenSMOKE_SolProp_HeatCapacity.restype = c_double
