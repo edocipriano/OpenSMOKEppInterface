@@ -1,0 +1,22 @@
+Number of gas species = 4
+Number of surface species = 1
+Number of surface reactions = 2
+Species 0 is CO
+Species 1 is O2
+Species 2 is CO2
+Species 3 is H2O
+R species 0: -3.21239e-07
+R species 1: -1.6062e-07
+R species 2: 3.21239e-07
+R species 3: 0
+Heat released by the gas phase chemical reactions: 90.779
+Rgas species 0: 0.000459605
+Rgas species 1: -0.000228748
+Rgas species 2: -1.05422e-06
+Rgas species 3: 0
+Rsite species 0: -0.000458551
+RsitePhases species 0: -0.000458551
+Heat released by the surface chemical reactions: 45642.3
+
+Total carbon formation rate from Hassan et al. = -0.000458832 kmol/m2/s
+Total carbon formation rate from OpenSMOKE++ = -0.000458551 kmol/m2/s
