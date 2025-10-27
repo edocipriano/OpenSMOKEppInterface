@@ -1,0 +1,39 @@
+ELEMENTS
+C H O N
+END
+
+SPECIES
+TAR CH4 O2 CO H2O CO2 H2 N2
+END
+
+REACTIONS
+!WESTBROOK & DRYER
+!TAR + 3O2 => 6CO + 5H2O           5.700E+11   0.000   30000
+!FORD /TAR 0.25/
+!FORD /O2 1.5/
+
+!CO + 0.5O2 => CO2                 4.000E+14   0.000   40000
+!FORD /CO 1/
+!FORD /H2O 0.5/
+!FORD /O2 0.25/
+
+!CO2 => CO + 0.5O2                 5.000E+08   0.000   40000
+!FORD /CO2 1/
+
+!JONES AND LINSTED + MOUSAVI
+TAR => 3H2 + 5CO + CH4            7.110E+13   0.000   56900
+
+CH4 + 0.5O2 => CO + 2H2           7.820E+13   0.000   30000
+FORD /CH4 0.5/
+FORD /O2 1.25/
+
+CH4 + H2O => CO + 3H2             3.000E+11   0.000   30000
+
+H2 + 0.5 O2 = H2O                 1.210E+18  -1.000   40000
+FORD /H2 0.25/
+FORD /O2 1.5/
+
+CO + H2O = CO2 + H2               2.750E+12   0.000   20000
+
+END
+
