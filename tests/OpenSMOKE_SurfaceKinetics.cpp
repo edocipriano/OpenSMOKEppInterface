@@ -1,5 +1,6 @@
 #include <iostream>
 #include <vector>
+#include <math.h>
 #include "OpenSMOKE_Interface.h"
 
 #define kinfolder "../kinetics/surface/char/kinetics"
