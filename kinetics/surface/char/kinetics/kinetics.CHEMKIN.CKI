@@ -1,10 +1,12 @@
 ELEMENTS
 C
+H
 O
 END
 
 SPECIES
 CO                            O2                            CO2                           
+H2O                           
 END
 
 REACTIONS
@@ -12,6 +14,7 @@ REACTIONS
 CO+0.5O2=>CO2                                           1.2300e+08    0.000     29971.32
  FORD /  CO  1.0000/
  FORD /  O2  0.5000/
+ FORD /  H2O  0.5000/
 
 END
 
