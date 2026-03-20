@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="utf-8"?>
+<opensmoke version="0.1a">
+<Properties>
+  <Author>undefined</Author>
+  <Place>undefined</Place>
+  <Date>2025-09-22</Date>
+  <Time>16:47:08</Time>
+  <Comments>
+no comments
+  </Comments>
+</Properties>
+<NumberOfElements>
+3
+</NumberOfElements>
+<NamesOfElements>
+C H N 
+</NamesOfElements>
+<AtomicComposition>
+2.0000000000e+00 4.0000000000e+00 0. 
+0. 0. 2.0000000000e+00 
+4.0000000000e+01 8.0000000000e+01 0. 
+</AtomicComposition>
+<NumberOfSpecies>
+3
+</NumberOfSpecies>
+<NamesOfSpecies>
+C2H4 N2 P-HDPE-P 
+</NamesOfSpecies>
+<Thermodynamics type="NASA">
+<NASA-coefficients>
+3.991827240000000110e+00 1.048339080000000069e-02 -3.717213420000000148e-06 5.946283660000000448e-10 -3.536303860000000226e-14 4.268658510000000206e+03 -2.690817620000000021e-01 3.959200630000000221e+00 -7.570513729999999754e-03 5.709899930000000211e-05 -6.915883520000000446e-08 2.698841900000000046e-11 5.089775980000000345e+03 4.097302130000000098e+00 3.000000000000000000e+02 4.000000000000000000e+03 1.000000000000000000e+03 2.805399942398071289e+01
+2.952576370000000061e+00 1.396900400000000101e-03 -4.926316030000000293e-07 7.860101950000000238e-11 -4.607552040000000123e-15 -9.239486879999999474e+02 5.871887619999999863e+00 3.531005280000000024e+00 -1.236609880000000012e-04 -5.029994330000000518e-07 2.435306120000000024e-09 -1.408812350000000076e-12 -1.046976280000000088e+03 2.967470379999999963e+00 2.000000000000000000e+02 6.000000000000000000e+03 1.000000000000000000e+03 2.801399993896480112e+01
+9.465521809999999903e+01 1.488438119999999920e-01 8.283883779999999780e-05 -9.899313809999999779e-08 2.323906250000000037e-11 -1.600023539999999921e+05 -4.143450490000000173e+02 9.465521809999999903e+01 1.488438119999999920e-01 8.283883779999999780e-05 -9.899313809999999779e-08 2.323906250000000037e-11 -1.600023539999999921e+05 -4.143450490000000173e+02 2.000000000000000000e+02 2.000000000000000000e+03 1.500000000000000000e+03 5.610799884796142578e+02
+</NASA-coefficients>
+</Thermodynamics>
+<Transport type="none">
+</Transport>
+<NumberOfMaterials>
+1
+</NumberOfMaterials>
+<NumberOfSolidSpecies>
+1
+</NumberOfSolidSpecies>
+<SolidSpecies>
+P-HDPE-P
+</SolidSpecies>
+<MaterialDescription index="1" name="BIOMASS">
+1
+P-HDPE-P 1
+</MaterialDescription>
+<Kinetics type="OpenSMOKE" version="01-02-2014">
+<MaterialKinetics index="1" name="BIOMASS">
+<NumberOfSpecies>
+3
+</NumberOfSpecies>
+<NumberOfReactions>
+1
+</NumberOfReactions>
+<Irreversible>
+1
+1 
+</Irreversible>
+<Reversible>
+0
+</Reversible>
+<Reversible-Thermodynamics>
+0
+</Reversible-Thermodynamics>
+<Reversible-Explicit>
+0
+</Reversible-Explicit>
+<ReactionsNeedingConversion>
+0
+</ReactionsNeedingConversion>
+<TypeOfKinetics>
+chemkin_conventional
+</TypeOfKinetics>
+<ThermodynamicReversibleReactions>
+0
+</ThermodynamicReversibleReactions>
+<KineticParameters>
+<Direct>
+<lnA>
+1
+3.5925070756030578e+01
+
+</lnA>
+<Beta>
+1
+0.0000000000000000e+00
+
+</Beta>
+<E_over_R>
+1
+3.0573730379984536e+04
+
+</E_over_R>
+<ForwardKineticOrder>
+1
+0.0000000000000000e+00
+
+</ForwardKineticOrder>
+</Direct>
+</KineticParameters>
+<Stoichiometry type="OpenSMOKE" version="01-02-2014">
+3
+0 0 1 
+3
+0 0 0 
+3
+0 0 0 
+3
+0 0 0 
+3
+0 0 0 
+3
+1 0 0 
+3
+0 0 0 
+3
+0 0 0 
+3
+0 0 0 
+3
+0 0 1 
+3
+0 0 0 
+3
+0 0 0 
+3
+0 0 0 
+3
+0 0 0 
+3
+0 0 0 
+1
+1 
+0
+
+0
+
+0
+
+0
+
+0
+
+1
+1 
+0
+
+0
+
+0
+
+1
+1 
+1
+9.4999999999999996e-01 
+0
+
+0
+
+0
+
+0
+
+0
+
+0
+
+1
+9.4999999999999996e-01 
+0
+0
+</Stoichiometry>
+<GlobalReactions type="none">
+</GlobalReactions>
+</MaterialKinetics>
+</Kinetics>
+</opensmoke>

@@ -1,0 +1,11 @@
+MATERIAL BIOMASS
+
+SOLID
+P-HDPE-P
+END
+
+REACTIONS
+P-HDPE-P => 0.95P-HDPE-P+C2H4             4.000E+15  0.000   60750 ! from Locaspi
+!P-HDPE-P => 0.95P-HDPE-P+C2H4            3.000E+13  0.000   30000 ! from Nobili
+END
+

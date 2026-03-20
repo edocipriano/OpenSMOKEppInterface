@@ -28,7 +28,7 @@ int main () {
   }
 
   std::vector<double> x (OpenSMOKE_NumberOfSolidSpecies());
-  
+
   x[OpenSMOKE_IndexOfSolidSpecies ("CELL")] = 0.5;
   x[OpenSMOKE_IndexOfSolidSpecies ("LIGO")] = 0.5;
 
