@@ -177,12 +177,30 @@ int
   OpenSMOKE_IndexOfSpecies (const char* s);
 
 /**
+### *OpenSMOKE_IndexOfSpeciesWithoutError()*: Index of the specific species in gas phase
+returns -1 if not found, without throwing errors
+
+* *s*: name of the species under investigation
+*/
+int
+  OpenSMOKE_IndexOfSpeciesWithoutError (const char* s);
+
+/**
 ### *OpenSMOKE_IndexOfSolidSpecies()*: Index of the specific species in solid phase
 
 * *s*: name of the species under investigation
 */
 int
   OpenSMOKE_IndexOfSolidSpecies (const char* s);
+
+  /**
+### *OpenSMOKE_IndexOfSolidSpeciesWithoutError()*: Index of the specific species in gas phase
+returns -1 if not found, without throwing errors
+
+* *s*: name of the species under investigation
+*/
+int
+  OpenSMOKE_IndexOfSolidSpeciesWithoutError (const char* s);
 
 /**
 # Gas Phase Thermodynamics

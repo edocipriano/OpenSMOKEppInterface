@@ -365,9 +365,18 @@ int OpenSMOKE_IndexOfSpecies (const char* s) {
   return thermodynamicsMapXML->IndexOfSpecies(s) - 1;
 }
 
+int OpenSMOKE_IndexOfSpeciesWithoutError (const char* s) {
+  return thermodynamicsMapXML->IndexOfSpeciesWithoutError(s) - 1;
+}
+
 int OpenSMOKE_IndexOfSolidSpecies (const char* s) {
   unsigned int ngs = thermodynamicsSolidMapXML->number_of_gas_species();
   return thermodynamicsSolidMapXML->IndexOfSpecies(s) - 1 - ngs;
+}
+
+int OpenSMOKE_IndexOfSolidSpeciesWithoutError (const char* s) {
+  unsigned int ngs = thermodynamicsSolidMapXML->number_of_gas_species();
+  return thermodynamicsSolidMapXML->IndexOfSpeciesWithoutError(s) - 1 - ngs;
 }
 
 double OpenSMOKE_GasProp_DynamicViscosity (double* x) {
